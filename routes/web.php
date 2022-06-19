@@ -21,6 +21,10 @@ Route::get('/accueil', function () {
     return view('main.index');
 });
 
+Route::get('/dashboard', function () {
+    return view('main.dashboard');
+});
+
 Route::get('/performance', function () {
     return view('main.performance');
 });
@@ -29,6 +33,20 @@ Route::get('/finance', function () {
     return view('main.finance');
 });
 
+Route::get('/calendrier', function () {
+    return view('main.calendar');
+});
 
+Route::get('/dossiers', function () {
+    return view('main.claims');
+});
+
+Route::get('/contacts', function () {
+    return view('main.contacts');
+});
+
+Route::get('/parametres', function () {
+    return view('main.settings');
+});
 
 
