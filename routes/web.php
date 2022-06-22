@@ -12,41 +12,41 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('accueil', function () {
+        return view('main.index');
+    })->name('accueil');
 
-Route::get('/accueil', function () {
-    return view('main.index');
+    Route::get('dashboard', function () {
+        return view('main.dashboard');
+    })->name('dashboard');
+
+    Route::get('performance', function () {
+        return view('main.performance');
+    })->name('performance');
+
+    Route::get('finance', function () {
+        return view('main.finance');
+    })->name('finance');
+
+    Route::get('calendrier', function () {
+        return view('main.calendar');
+    })->name('calendrier');
+
+    Route::get('dossiers', function () {
+        return view('main.claims');
+    })->name('dossiers');
+
+    Route::get('contacts', function () {
+        return view('main.contacts');
+    })->name('contacts');
+
+    Route::get('parametres', function () {
+        return view('main.settings');
+    })->name('parametres');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
-
-Route::get('/dashboard', function () {
-    return view('main.dashboard');
-});
-
-Route::get('/performance', function () {
-    return view('main.performance');
-});
-
-Route::get('/finance', function () {
-    return view('main.finance');
-});
-
-Route::get('/calendrier', function () {
-    return view('main.calendar');
-});
-
-Route::get('/dossiers', function () {
-    return view('main.claims');
-});
-
-Route::get('/contacts', function () {
-    return view('main.contacts');
-});
-
-Route::get('/parametres', function () {
-    return view('main.settings');
-});
-
-
+Auth::routes();

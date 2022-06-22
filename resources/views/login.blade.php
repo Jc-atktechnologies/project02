@@ -6,9 +6,9 @@
 
         <title>Login</title>
 
-        <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+        <link href="{{asset('public/css/bootstrap.css')}}" rel="stylesheet"/>
 
-<style> 
+<style>
 
 html,
 body {
