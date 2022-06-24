@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\UserDetailController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\ProvinceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+\Illuminate\Support\Facades\App::setLocale('en');
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -48,5 +52,14 @@ Route::group(['middleware'=>'auth'],function (){
         return view('main.settings');
     })->name('parametres');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    /* to create users and show users list */
+    Route::get('users-list',[UserDetailController::class,'index'])->name('users-list');
+    /* for branches */
+    Route::get('branch-list',[BranchController::class,'index'])->name('branch-list');
+    Route::get('create-branch',[BranchController::class,'create'])->name('create-branch');
+    Route::post('save-branch',[BranchController::class,'store'])->name('save-branch');
+    Route::get('update-branch/{id}',[BranchController::class,'edit'])->name('update-branch');
+    Route::put('edit-branch',[BranchController::class,'update'])->name('edit-branch');
+    Route::delete('delete-branch',[BranchController::class,'destroy'])->name('delete-branch');
 });
 Auth::routes();
