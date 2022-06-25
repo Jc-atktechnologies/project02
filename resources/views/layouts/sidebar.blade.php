@@ -15,7 +15,7 @@
                 <li>
                     <a href="{{route('dashboard')}}">
                         <i class="fe-sidebar"></i>
-                         <span>Tableau de bord</span>
+                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
@@ -33,14 +33,18 @@
                 <li>
                     <a href="{{route('calendrier')}}">
                         <i class="fe-calendar"></i>
-                         <span>Calendrier</span>
+                         <span>Calendar</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('dossiers')}}">
                         <i class="fe-file"></i>
-                         <span>Dossiers</span>
+                         <span>Claims</span>
                     </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a>Create Claim</a></li>
+                        <li><a>Search Claim</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{route('contacts')}}">
@@ -51,7 +55,7 @@
                 <li>
                     <a href="{{route('parametres')}}">
                         <i class="fe-package"></i>
-                         <span>Paramètres</span>
+                         <span>Settings</span>
                     </a>
                 </li>
                 <li>

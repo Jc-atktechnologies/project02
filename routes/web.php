@@ -41,7 +41,7 @@ Route::group(['middleware'=>'auth'],function (){
     })->name('calendrier');
 
     Route::get('dossiers', function () {
-        return view('main.claims');
+        return view('claims.index');
     })->name('dossiers');
 
     Route::get('contacts', function () {
@@ -61,5 +61,13 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-branch/{id}',[BranchController::class,'edit'])->name('update-branch');
     Route::put('edit-branch',[BranchController::class,'update'])->name('edit-branch');
     Route::delete('delete-branch',[BranchController::class,'destroy'])->name('delete-branch');
+
+    /* for claims */
+    Route::get('claims-list',[BranchController::class,'index'])->name('claims-list');
+    Route::get('create-claims',[BranchController::class,'create'])->name('create-claims');
+    Route::post('save-claims',[BranchController::class,'store'])->name('save-claims');
+    Route::get('update-claims/{claimnumber}',[BranchController::class,'edit'])->name('update-claims');
+    Route::put('edit-claims',[BranchController::class,'update'])->name('edit-claims');
+    Route::delete('delete-claims',[BranchController::class,'destroy'])->name('delete-claims');
 });
 Auth::routes();
