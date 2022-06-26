@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @php
-    if (!empty($branch_details)){
-        $id    = $branch_details->id;
-        $title = $branch_details->title;
-        $email = $branch_details->email;
-        $contact_number = $branch_details->contact_number;
-        $address = $branch_details->address;
-        $status  = $branch_details->status;
-        $put_input              = '<input type="hidden" name="_method" value="PUT">';
+    if (!empty($branch_data)){
+        $id    = $branch_data->id;
+        $title = $branch_data->title;
+        $status  = $branch_data->status;
+        $put_input = '<input type="hidden" name="_method" value="PUT">';
         $heading = "Update Branch";
         $route   = route('edit-branch');
     } else{

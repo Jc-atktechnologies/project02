@@ -60,7 +60,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::post('save-branch',[BranchController::class,'store'])->name('save-branch');
     Route::get('update-branch/{id}',[BranchController::class,'edit'])->name('update-branch');
     Route::put('edit-branch',[BranchController::class,'update'])->name('edit-branch');
-    Route::delete('delete-branch',[BranchController::class,'destroy'])->name('delete-branch');
+    Route::delete('delete-branch/{id}',[BranchController::class,'destroy'])->name('delete-branch');
 
     /* for claims */
     Route::get('claims-list',[BranchController::class,'index'])->name('claims-list');

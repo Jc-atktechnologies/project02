@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BranchRequest;
 use App\Models\Branch;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
 class BranchController extends Controller
@@ -38,7 +38,7 @@ class BranchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BranchRequest $request)
     {
         //
         try {
@@ -52,16 +52,16 @@ class BranchController extends Controller
             $store_data = Branch::insert($branch_data);
             if ($store_data){
                 DB::commit();
-                $message = str_replace(':module',trans('create_success_message'),true);
+                $message = str_replace(':module','Branch',trans('general_messages.create_success_message'));
                 flash($message)->success();
                 return redirect()->to(route('branch-list'));
             } else{
                 DB::rollBack();
-                flash(trans('general_error'))->error();
+                flash(trans('general_messages.general_error'))->error();
                 return redirect()->back();
             }
         } catch (\Exception $exception){
-            flash(trans('general_error'))->error();
+            flash(trans('general_messages.general_error'))->error();
             return redirect('home');
         }
     }
@@ -72,7 +72,7 @@ class BranchController extends Controller
      * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
-    public function show(Branch $branch)
+    public function show(BranchRequest $branch)
     {
         //
     }
@@ -88,13 +88,13 @@ class BranchController extends Controller
         //
         try {
             if (empty($id)){
-                flash(trans('url_change_error'))->error();
+                flash(trans('general_messages.url_change_error'))->error();
                 return redirect()->back();
             }
             $branch_data = Branch::where('id',$id)->first();
             return view('branch.form',compact('branch_data'));
         } catch (\Exception $exception){
-            flash(trans('general_error'))->error();
+            flash(trans('general_messages.general_error'))->error();
             return redirect()->back();
         }
     }
@@ -106,7 +106,7 @@ class BranchController extends Controller
      * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
-    public function update(Branch $request)
+    public function update(BranchRequest $request)
     {
         //
         try {
@@ -121,16 +121,16 @@ class BranchController extends Controller
             $is_update = Branch::where('id','=',$id)->update($branch_data);
             if ($is_update){
                 DB::commit();
-                $message = str_replace(':module',trans('update_success_message'));
+                $message = str_replace(':module','Branch',trans('general_messages.update_success_message'));
                 flash($message)->success();
                 return redirect()->to(route('branch-list'));
             } else{
                 DB::rollBack();
-                flash(trans('general_error'))->error();
+                flash(trans('general_messages.general_error'))->error();
                 return redirect()->back();
             }
         } catch (\Exception $exception){
-            flash(trans('general_error'))->error();
+            flash(trans('general_messages.general_error'))->error();
             return redirect()->back();
         }
     }
@@ -141,8 +141,29 @@ class BranchController extends Controller
      * @param  \App\Models\Branch  $branch
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Branch $branch)
+    public function destroy($id)
     {
         //
+        try {
+            if (empty($id)){
+                flash(trans('general_messages.url_change_error'))->error();
+                return redirect()->back();
+            }
+            DB::beginTransaction();
+            $delete_branch = Branch::where('id','=',$id)->delete();
+            if ($delete_branch){
+                DB::commit();
+                $message = str_replace(':module','Branch',trans('general_messages.delete_success_message'));
+                flash($message)->success();
+                return redirect()->back();
+            } else{
+                DB::rollBack();
+                flash(trans('general_messages.general_error'))->error();
+                return redirect()->back();
+            }
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'))->error();
+            return redirect()->back();
+        }
     }
 }
