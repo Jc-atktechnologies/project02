@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Http\Requests\CityRequest;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,8 @@ class CityController extends Controller
     public function create()
     {
         //
-        return view('city.form');
+        $provinces = Province::where('status','=',1)->orderBy('title','ASC')->get();
+        return view('city.form',compact('provinces'));
     }
 
     /**
@@ -94,7 +96,8 @@ class CityController extends Controller
                 return redirect()->back();
             }
             $city_detail = City::where('id','=',$id)->first();
-            return view('city.form',compact('city_detail'));
+            $provinces = Province::where('status','=',1)->orderBy('title','ASC')->get();
+            return view('city.form',compact('city_detail','provinces'));
         } catch (\Exception $exception){
             flash(trans('general_messages.general_error'))->error();
             return redirect()->back();

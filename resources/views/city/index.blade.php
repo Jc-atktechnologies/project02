@@ -25,6 +25,7 @@
                     <thead>
                     <tr>
                         <th>Title</th>
+                        <th>Province</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>

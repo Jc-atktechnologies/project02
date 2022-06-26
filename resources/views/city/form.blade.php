@@ -7,7 +7,7 @@
         $status         = $city_detail->status;
         $put_input      = '<input type="hidden" name="_method" value="PUT">';
         $heading        = "Update City";
-        $route          = route('edit-branch');
+        $route          = route('edit-city');
     } else{
         $id             = '';
         $province_id    = '';
@@ -15,7 +15,7 @@
         $status         = '';
         $put_input      = '';
         $heading        = "Create City";
-        $route          = route('save-branch');
+        $route          = route('save-city');
     }
 @endphp
 @section('content')
@@ -46,12 +46,12 @@
                         <select name="province_id" class="form-control">
                             <option value="">Select Province</option>
                             @foreach($provinces as $province)
-                                <option value="{{$province->id}}" @if($province_id == $province_id) selected @endif>{{$province->title}}</option>
+                                <option value="{{$province->id}}" @if($province_id && $province_id == $province->id) selected @endif>{{$province->title}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Branch Title</label>
+                        <label>Title</label>
                         <input type="text" name="title" class="form-control" value="@if(old('title')){{old('title')}}@else{{$title}}@endif">
                         @error('title')
                         <ul class="parsley-errors-list filled" id="parsley-id-7">
