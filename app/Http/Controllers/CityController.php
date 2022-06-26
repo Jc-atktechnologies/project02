@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use Illuminate\Http\Request;
+use App\Http\Requests\CityRequest;
+use Illuminate\Support\Facades\DB;
+use function Symfony\Component\VarDumper\Dumper\esc;
 
 class CityController extends Controller
 {
@@ -15,6 +18,8 @@ class CityController extends Controller
     public function index()
     {
         //
+        $cities_list = City::get();
+        return view('city.index',compact('cities_list'));
     }
 
     /**
@@ -25,6 +30,7 @@ class CityController extends Controller
     public function create()
     {
         //
+        return view('city.form');
     }
 
     /**
@@ -33,9 +39,33 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CityRequest $request)
     {
         //
+        try {
+            $city_data = [
+                'created_by'    => auth()->user()->id,
+                'province_id'   => $request->province_id,
+                'title'         => $request->title,
+                'status'        => $request->status,
+                'created_at'    => date('Y-m-d H:i:s')
+            ];
+            DB::beginTransaction();
+            $create_city = City::insert($city_data);
+            if ($create_city){
+                DB::commit();
+                $message = str_replace(':module','City',trans('general_messages.create_success_message'));
+                flash($message)->success();
+                return redirect()->to(route('cities-list'));
+            } else{
+                DB::rollBack();
+                flash(trans('general_messages.general_error'))->error();
+                return redirect()->back();
+            }
+        } catch (\Exception $exception){
+            flash(trans('general_messages.delete_success_message'))->error();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -55,9 +85,20 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit($id)
     {
         //
+        try {
+            if (empty($id)){
+                flash(trans('general_messages.url_change_error'))->error();
+                return redirect()->back();
+            }
+            $city_detail = City::where('id','=',$id)->first();
+            return view('city.form',compact('city_detail'));
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'))->error();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -67,9 +108,33 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(CityRequest $request)
     {
         //
+        try {
+            $city_data = [
+              'province_id' => $request->province_id,
+              'title'       => $request->title,
+              'status'      => $request->status,
+              'updated_at'  => date('Y-m-d H:i:s')
+            ];
+            DB::beginTransaction();
+            $id = $request->id;
+            $update_city = City::where('id','=',$id)->update($city_data);
+            if ($update_city){
+                DB::commit();
+                $message = str_replace(':module','City',trans('general_messages.update_success_message'));
+                flash($message)->success();
+                return redirect()->to(route('cities-list'));
+            } else{
+                DB::rollBack();
+                flash(trans('general_messages.general_error'))->error();
+                return redirect()->back();
+            }
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'))->error();
+            return redirect()->back();
+        }
     }
 
     /**
@@ -78,8 +143,28 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy($id)
     {
         //
+        try {
+            if (empty($id)){
+                flash(trans('general_messages.url_change_error'))->error();
+                return redirect()->back();
+            }
+            $delete_city = City::where('id','=',$id)->delete();
+            if ($delete_city){
+                DB::commit();
+                $message = str_replace(':module','City',trans('general_messages.delete_success_message'));
+                flash($message)->success();
+                return redirect()->to(route('cities-list'));
+            }else{
+                DB::rollBack();
+                flash(trans('general_messages.general_error'))->error();
+                return redirect()->back();
+            }
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'))->error();
+            return redirect()->back();
+        }
     }
 }

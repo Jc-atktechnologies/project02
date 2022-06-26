@@ -69,5 +69,13 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-claims/{claimnumber}',[BranchController::class,'edit'])->name('update-claims');
     Route::put('edit-claims',[BranchController::class,'update'])->name('edit-claims');
     Route::delete('delete-claims',[BranchController::class,'destroy'])->name('delete-claims');
+
+    /* for cities */
+    Route::get('cities-list',[CityController::class,'index'])->name('cities-list');
+    Route::get('create-city',[CityController::class,'create'])->name('create-city');
+    Route::get('save-city',[CityController::class,'store'])->name('save-city');
+    Route::get('update-city/{id}',[CityController::class,'edit'])->name('update-city');
+    Route::put('edit-city',[CityController::class,'update'])->name('edit-city');
+    Route::delete('delete-city/{id}',[CityController::class,'destroy'])->name('delete-city');
 });
 Auth::routes();

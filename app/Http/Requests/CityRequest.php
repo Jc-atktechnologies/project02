@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class City extends FormRequest
+class CityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class City extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,9 @@ class City extends FormRequest
     {
         return [
             //
+            'province_id'   => 'required|integer',
+            'title'         => 'required|string|min:3|max:50',
+            'status'        => 'required|integer'
         ];
     }
 }
