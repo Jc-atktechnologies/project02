@@ -69,5 +69,13 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-claims/{claimnumber}',[BranchController::class,'edit'])->name('update-claims');
     Route::put('edit-claims',[BranchController::class,'update'])->name('edit-claims');
     Route::delete('delete-claims',[BranchController::class,'destroy'])->name('delete-claims');
+
+    /* for provinces */
+    Route::get('provinces-list',[ProvinceController::class,'index'])->name('provinces-list');
+    Route::get('create-province',[ProvinceController::class,'create'])->name('create-province');
+    Route::post('save-province',[ProvinceController::class,'store'])->name('save-province');
+    Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
+    Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
+    Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
 });
 Auth::routes();
