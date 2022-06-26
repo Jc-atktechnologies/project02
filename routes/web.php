@@ -77,5 +77,13 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-city/{id}',[CityController::class,'edit'])->name('update-city');
     Route::put('edit-city',[CityController::class,'update'])->name('edit-city');
     Route::delete('delete-city/{id}',[CityController::class,'destroy'])->name('delete-city');
+
+    /* for provinces */
+    Route::get('provinces-list',[ProvinceController::class,'index'])->name('provinces-list');
+    Route::get('create-province',[ProvinceController::class,'create'])->name('create-province');
+    Route::post('save-province',[ProvinceController::class,'store'])->name('save-province');
+    Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
+    Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
+    Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
 });
 Auth::routes();
