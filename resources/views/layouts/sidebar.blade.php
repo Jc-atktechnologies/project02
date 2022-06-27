@@ -47,10 +47,15 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('contacts')}}">
+                    <a href="javascript: void(0);">
                         <i class="fe-users"></i>
-                         <span>Contacts</span>
+                        <span>Users Management</span>
+                        <span class="menu-arrow"></span>
                     </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{route('users-list')}}">User List</a></li>
+                        <li><a href="{{route('create-user')}}">Add User</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{route('parametres')}}">

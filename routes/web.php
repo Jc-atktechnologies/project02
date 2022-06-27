@@ -54,6 +54,14 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     /* to create users and show users list */
     Route::get('users-list',[UserDetailController::class,'index'])->name('users-list');
+    Route::get('create-user',[UserDetailController::class,'create'])->name('create-user');
+    Route::get('account-preference',[UserDetailController::class,'account_preference'])->name('account-preference');
+    Route::get('user-permission',[UserDetailController::class,'user_permission'])->name('user-permission');
+    Route::get('payout-setting',[UserDetailController::class,'payout_setting'])->name('payout-setting');
+    Route::get('team-membership',[UserDetailController::class,'team_membership'])->name('team-membership');
+    Route::get('skill',[UserDetailController::class,'skill'])->name('skill');
+    Route::get('attachments',[UserDetailController::class,'attachments'])->name('attachments');
+    Route::get('management-notes',[UserDetailController::class,'management_notes'])->name('management-notes');
     /* for branches */
     Route::get('branch-list',[BranchController::class,'index'])->name('branch-list');
     Route::get('create-branch',[BranchController::class,'create'])->name('create-branch');
