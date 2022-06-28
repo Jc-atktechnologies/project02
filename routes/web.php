@@ -40,9 +40,9 @@ Route::group(['middleware'=>'auth'],function (){
         return view('main.calendar');
     })->name('calendrier');
 
-    Route::get('dossiers', function () {
+    Route::get('claims', function () {
         return view('claims.index');
-    })->name('dossiers');
+    })->name('claims');
 
     Route::get('contacts', function () {
         return view('main.contacts');
@@ -85,5 +85,10 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
     Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
     Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
+
+    /* for calendar */
+    
+
+
 });
 Auth::routes();
