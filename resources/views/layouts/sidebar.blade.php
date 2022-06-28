@@ -31,13 +31,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('calendrier')}}">
+                    <a href="{{route('calendar')}}">
                         <i class="fe-calendar"></i>
                          <span>Calendar</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('dossiers')}}">
+                    <a href="{{route('claims')}}">
                         <i class="fe-file"></i>
                          <span>Claims</span>
                     </a>
@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('parametres')}}">
+                    <a href="{{route('settings')}}">
                         <i class="fe-package"></i>
                          <span>Settings</span>
                     </a>

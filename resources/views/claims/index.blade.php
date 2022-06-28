@@ -24,6 +24,13 @@
                 
                 <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
+                        <tr>
+                            <td colspan="8">ADD SEARCH BAR</td>
+                            <td colspan="8">ADD CLAIM BUTTON</td>
+                        </tr>
+                        <tr>
+                            <td colspan="10"></td>
+                        </tr>
                     <tr>
                         <th>Insured</th>
                         <th>Insurer</th>
@@ -38,26 +45,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @forelse($claims_data as $claims)
+                        
                         <tr>
-                            <td>{{$claims->title}}</td>
-                            <td><span class="badge-success">DATA</span>DATA<span class="badge-danger"></span>DATA</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> <a href="{{route('update-claims',['id'=>$claims->claimnumber])}}" title="Edit Claim" class="btn btn-info"><i class="fa fa-edit"></i> </a>
-                                @include('general_partials.delete_partial',['delete_url'=>route('delete-claim',['id'=>$claims->claimnumber])])
+                            <td>Full Name</td>
+                            <td>Insurer Company Name</td>
+                            <td>YEAR+RANDOM NUMBER (AUTO INCREMENT)</td>
+                            <td>DD/MM/YYYY</td>
+                            <td>DD/MM/YYYY</td>
+                            <td>LOSS TYPE</td>
+                            <td>STATUS WITH BG COLOR</td>
+                            <td>TIMESTAMP</td>
+                            <td>AGE OF CLAIM</td>
+                            <td> <a href="" title="Edit Claim" class="btn btn-info"><i class="fa fa-edit"></i> </a>
+                    
                             </td>
                         </tr>
-                      @empty
                         <tr>
-                            <td colspan="5">{{str_replace(':module','Branch',trans('general_messages.no_record_found'))}}</td>
+                            <td colspan="10"></td>
                         </tr>
-                    @endforelse
                     </tbody>
                 </table>
             </div>

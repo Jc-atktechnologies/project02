@@ -20,37 +20,35 @@ Route::get('/', function () {
     return view('auth.login');
 });
 Route::group(['middleware'=>'auth'],function (){
-    Route::get('accueil', function () {
-        return view('main.index');
-    })->name('accueil');
 
     Route::get('dashboard', function () {
-        return view('main.dashboard');
+        return view('dashboard.index');
     })->name('dashboard');
 
     Route::get('performance', function () {
-        return view('main.performance');
+        return view('performance.index');
     })->name('performance');
 
     Route::get('finance', function () {
-        return view('main.finance');
+        return view('finance.index');
     })->name('finance');
 
-    Route::get('calendrier', function () {
-        return view('main.calendar');
-    })->name('calendrier');
+    Route::get('calendar', function () {
+        return view('calendar.index');
+    })->name('calendar');
 
-    Route::get('dossiers', function () {
+    Route::get('claims', function () {
         return view('claims.index');
-    })->name('dossiers');
+    })->name('claims');
 
     Route::get('contacts', function () {
-        return view('main.contacts');
+        return view('contacts.index');
     })->name('contacts');
 
-    Route::get('parametres', function () {
-        return view('main.settings');
-    })->name('parametres');
+    Route::get('settings', function () {
+        return view('settings.index');
+    })->name('settings');
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     /* to create users and show users list */
     Route::get('users-list',[UserDetailController::class,'index'])->name('users-list');
@@ -86,4 +84,5 @@ Route::group(['middleware'=>'auth'],function (){
     Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
     Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
 });
+
 Auth::routes();

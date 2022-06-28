@@ -19,7 +19,7 @@ class BranchController extends Controller
     {
         //
         $claims_data = Claims::get();
-        return view('claims.index',compact('claims_data'));
+        return view('claims.index',compact('claims'));
     }
 
     /**
