@@ -41,10 +41,6 @@
                         <i class="fe-file"></i>
                          <span>Claims</span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a>Create Claim</a></li>
-                        <li><a>Search Claim</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="{{route('contacts')}}">
