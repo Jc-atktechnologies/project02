@@ -8,13 +8,13 @@
     <li class="nav-item">
         <a href="{{route('account-preference')}}" class="nav-link @if($tab == 'account_preference') active @endif" style="">
             <span class="d-block d-sm-none"><i class="mdi mdi-account"></i></span>
-            <span class="d-none d-sm-block">Account Preferences</span>
+            <span class="d-none d-sm-block">Preferences</span>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{route('user-permission')}}" class="nav-link @if($tab == 'user_permission') active @endif" style="">
             <span class="d-block d-sm-none"><i class="mdi mdi-account"></i></span>
-            <span class="d-none d-sm-block">User Permissions</span>
+            <span class="d-none d-sm-block">Permissions</span>
         </a>
     </li>
     <li class="nav-item">
@@ -44,7 +44,7 @@
     <li class="nav-item">
         <a href="{{route('management-notes')}}" class="nav-link @if($tab == 'management_notes') active @endif" style="">
             <span class="d-block d-sm-none"><i class="mdi mdi-account"></i></span>
-            <span class="d-none d-sm-block">Management Notes</span>
+            <span class="d-none d-sm-block">Notes</span>
         </a>
     </li>
 </ul>
