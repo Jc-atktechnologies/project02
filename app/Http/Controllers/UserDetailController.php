@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\userDetailRequest;
+use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserDetailController extends Controller
 {
@@ -37,9 +40,53 @@ class UserDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(userDetailRequest $request)
     {
         //
+        try {
+            DB::beginTransaction();
+            $user_data = [
+                'name'  => $request->full_name,
+                'email' => $request->email,
+                'created_at'    => date('Y-m-d H:i:s')
+            ];
+            $user_id = User::getInsertId($user_data);
+            if ($user_id){
+                $user_detail = [
+                    'user_id'       => $user_id,
+                    'title'         => $request->title,
+                    'phone_number'  => $request->phone_number,
+                    'mobile_number' => $request->mobile_number,
+                    'branch_id'     => $request->branch_id,
+                    'dob'           => $request->dob,
+                    'ssn'           => $request->ssn,
+                    'emergency_contact' => $request->emergency_contact,
+                    'external_link' => $request->external_link,
+                    'license_expiry'    => $request->license_expiry,
+                    'preferred_for' => $request->preferred_for,
+                    'rating'        => $request->rating,
+                    'languages'     => $request->language_spoken,
+                    'comments'      => $request->comments
+                ];
+                $save_user_details = UserDetail::insert($user_detail);
+                if ($save_user_details){
+                    DB::commit();
+                    $message = str_replace(':module','User',trans('general_messages.create_success_message'));
+                    flash($message)->success();
+                } else{
+                    DB::rollBack();
+                    flash(trans('general_messages.general_error'));
+                    return redirect()->back();
+                }
+            } else{
+                DB::rollBack();
+                flash(trans('general_messages.general_error'));
+                return redirect()->back();
+            }
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'));
+            return redirect()->back();
+        }
     }
 
     /**

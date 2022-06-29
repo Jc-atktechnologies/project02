@@ -62,6 +62,8 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('skill',[UserDetailController::class,'skill'])->name('skill');
     Route::get('attachments',[UserDetailController::class,'attachments'])->name('attachments');
     Route::get('management-notes',[UserDetailController::class,'management_notes'])->name('management-notes');
+    /* to store the user data */
+    Route::post('save-user-information',[UserDetailController::class,'store'])->name('save-user-information');
     /* for branches */
     Route::get('branch-list',[BranchController::class,'index'])->name('branch-list');
     Route::get('create-branch',[BranchController::class,'create'])->name('create-branch');

@@ -30,15 +30,15 @@
     </div>
     <div class="form-group">
         <label>Phone</label>
-        <input type="text"class="form-control" name="Phone">
+        <input type="text"class="form-control" name="phone_number">
     </div>
     <div class="form-group">
         <label>Cell</label>
-        <input type="text"class="form-control" name="cell">
+        <input type="text"class="form-control" name="mobile_number">
     </div>
     <div class="form-group">
         <label>Email Address</label>
-        <input type="text"class="form-control" name="email_address">
+        <input type="text"class="form-control" name="email">
     </div>
     <div class="form-group">
         <label>Branch</label>
@@ -62,7 +62,7 @@
 
     <div class="form-group">
         <label>External Link</label>
-        <input type="text"class="form-control" name="emergency_contact">
+        <input type="text"class="form-control" name="external_link">
     </div>
     <div class="form-group">
         <label>License Expiry</label>
