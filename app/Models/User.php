@@ -46,7 +46,8 @@ class User extends Authenticatable
     * validation rules for user details registration form
      */
     public const user_rules = [
-        'full_name'     => 'required|min:5|max:100',
+        'first_name'    => 'required|min:5|max:100',
+        'last_name'     => 'required|min:5|max:100',
         'email'         => 'required|email|unique:users',
         'title'         => 'required|min:2|max:15',
         'mobile_number' => 'required|min:10|max:15',

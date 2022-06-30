@@ -6,6 +6,8 @@ use App\Models\Attatchment;
 use App\Models\ManagementNote;
 use App\Models\PayoutSetting;
 use App\Models\User;
+use App\Models\UserDetail;
+use App\Rules\isValidPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
 class userDetailRequest extends FormRequest
@@ -28,21 +30,23 @@ class userDetailRequest extends FormRequest
     public function rules()
     {
         if ($this->request->has('account_preference')){
-            \App\Models\UserDetail::account_preference_rules;
+          $rules = UserDetail::account_preference_rules;
+          $rules['password'] = ['required','string',new isValidPassword()];
+          return $rules;
         } elseif ($this->request->has('user_permission')){
-            User::user_permission_rules;
+            return User::user_permission_rules;
         } elseif ($this->request->has('payout_setting')){
-            PayoutSetting::user_permission_rules;
+            return PayoutSetting::user_permission_rules;
         } elseif ($this->request->has('team_membership')){
-            User::team_membership_rule;
+            return User::team_membership_rule;
         } elseif ($this->request->has('skills')){
-            User::skill_rule;
+            return User::skill_rule;
         } elseif ($this->request->has('attachments')){
-            Attatchment::user_attachment_rules;
+            return Attatchment::user_attachment_rules;
         } elseif ($this->request->has('management_notes')){
-            ManagementNote::user_management_note_rules;
+            return ManagementNote::user_management_note_rules;
         } else{
-            User::user_rules;
+            return User::user_rules;
         }
     }
 }

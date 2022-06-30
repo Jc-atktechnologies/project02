@@ -53,17 +53,23 @@ Route::group(['middleware'=>'auth'],function (){
     })->name('parametres');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     /* to create users and show users list */
+    /*Route::get('/{name}', [
+            'as' => 'create-user',
+            'uses' => UserDetailController::class,'create'
+        ]
+    )->where('name', 'create-user|account-preference|user-permission|payout-setting|team-membership|skill|attachments|management-notes');*/
     Route::get('users-list',[UserDetailController::class,'index'])->name('users-list');
     Route::get('create-user',[UserDetailController::class,'create'])->name('create-user');
-    Route::get('account-preference',[UserDetailController::class,'account_preference'])->name('account-preference');
-    Route::get('user-permission',[UserDetailController::class,'user_permission'])->name('user-permission');
-    Route::get('payout-setting',[UserDetailController::class,'payout_setting'])->name('payout-setting');
-    Route::get('team-membership',[UserDetailController::class,'team_membership'])->name('team-membership');
-    Route::get('skill',[UserDetailController::class,'skill'])->name('skill');
-    Route::get('attachments',[UserDetailController::class,'attachments'])->name('attachments');
-    Route::get('management-notes',[UserDetailController::class,'management_notes'])->name('management-notes');
+    Route::get('account-preference',[UserDetailController::class,'create'])->name('account-preference');
+    Route::get('user-permission',[UserDetailController::class,'create'])->name('user-permission');
+    Route::get('payout-setting',[UserDetailController::class,'create'])->name('payout-setting');
+    Route::get('team-membership',[UserDetailController::class,'create'])->name('team-membership');
+    Route::get('skill',[UserDetailController::class,'create'])->name('skill');
+    Route::get('attachments',[UserDetailController::class,'create'])->name('attachments');
+    Route::get('management-notes',[UserDetailController::class,'create'])->name('management-notes');
     /* to store the user data */
     Route::post('save-user-information',[UserDetailController::class,'store'])->name('save-user-information');
+    Route::post('save-account-preference',[UserDetailController::class,'store_account_preferences'])->name('save-account-preference');
     /* for branches */
     Route::get('branch-list',[BranchController::class,'index'])->name('branch-list');
     Route::get('create-branch',[BranchController::class,'create'])->name('create-branch');
