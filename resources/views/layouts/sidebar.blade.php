@@ -67,7 +67,7 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
                             <a href="javascript:void(0)">
-                                <span>System Administration</span>
+                                <span>System</span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">

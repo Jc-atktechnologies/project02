@@ -29,7 +29,7 @@
                             <a href="{{ route('loss-types') }}"> Loss Types</a>
                         </div>
                         <div class="col-10">
-                            Custom Loss Types allow you to tailor the types of files and tabs available within each loss type so that they reflect your current line of business. You have the ability to create the Loss Type Name and select the specific tabs to be displayed within that loss type. This allows for you to display only the tabs and information that pertains to each specific loss type. Please note that if you wish to only display your custom loss types, you must turn off VCA’s default loss types in the System Settings and Options Area of VCA.
+                            <p>Loss Types allow you to tailor the types of files and tabs available within each loss type so that they reflect your current line of business. You have the ability to create the Loss Type Name and select the specific tabs to be displayed within that loss type. This allows for you to display only the tabs and information that pertains to each specific loss type.</p>
                         </div>
                    </div>
                    <hr>
@@ -38,7 +38,7 @@
                             <a href="{{ route('claim-categories-list') }}"> Claim Categories</a>
                         </div>
                         <div class="col-10">
-                            <p>Custom Claim Categories gives you the ability to capture data that is specific to your day-to-day process which may not be readily available within VCA. You can create both the field label and the corresponding dropdown menu items. This field is also searchable within the Find A Claim feature and also included in the Custom Template Letters area. Please note that this feature requires you to enable under the System Settings and Options area of VCA. Again this feature allows for more granular claims reporting broken down by your specific grouping.</p>
+                            <p>Custom Claim Categories gives you the ability to capture data that is specific to your day-to-day process which may not be readily available within KM. You can create both the field label and the corresponding dropdown menu items.</p>
                         </div>
                    </div>
                  </div>
