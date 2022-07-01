@@ -58,7 +58,6 @@ class User extends Authenticatable
     ];
     public const user_permission_rules = [
         'user_id'   => 'required|integer',
-        'form_type' => 'required'
     ];
     public const team_membership_rule = [
         'user_id'   => 'required|integer',
@@ -68,4 +67,11 @@ class User extends Authenticatable
         'user_id'   => 'required|integer',
         'form_type' => 'required'
     ];
+
+    /**
+    * User Relations with other tables
+     */
+    public function userDetail(){
+        return $this->belongsTo(UserDetail::class);
+    }
 }

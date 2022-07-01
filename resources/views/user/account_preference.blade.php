@@ -1,16 +1,14 @@
 @error('user_id')
     <div class="alert alert-danger">{{$message}}</div>
 @enderror
-@foreach($errors->all() as $error)
-    <div class="alert alert-danger">{{$error}}</div>
-@endforeach
 <form action="{{route('save-account-preference')}}" method="post">
     @csrf
+    @method('PUT')
     <input type="hidden" name="account_preference" value="1">
     <input type="hidden" name="user_id" value="{{$user_id}}">
     <div class="alert-primary alert">System Login Information</div>
     <div class="form-check">
-        <input type="checkbox"class="form-check-input" name="is_active" @if(old('is_active') == 'Daily Work') checked @endif>
+        <input type="checkbox"class="form-check-input" name="is_active" value="1" @if(old('is_active') == 'Daily Work') checked @endif>
         <label class="form-check-label">Banned From Login</label>
         @error('is_active')
             <ul class="parsley-errors-list filled" id="parsley-id-7">
@@ -112,7 +110,7 @@
     <div class="form-group">
         <label>Calendar settings</label>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Allow User" id="flexCheckDefault" name="calendar_setting" @if(old('calendar_settings') == 'Allow User') checked @endif>
+            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="calendar_setting" @if(old('calendar_settings') == '1') checked @endif>
             <label class="form-check-label" for="flexCheckDefault">
                 Allow user to change calendar settings
             </label>
@@ -126,7 +124,7 @@
     <div class="form-group">
         <label>Internal Emails</label>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="Internal Publications" id="flexCheckDefault" name="internal_email" @if(old('internal_email') == 'Internal Publications') checked @endif>
+            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="internal_email" @if(old('internal_email') == '1') checked @endif>
             <label class="form-check-label" for="flexCheckDefault">
                 Receive Internal Publications
             </label>

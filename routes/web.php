@@ -5,6 +5,9 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\PayoutSettingController;
+use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\ManagementNoteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,7 +72,11 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('management-notes',[UserDetailController::class,'create'])->name('management-notes');
     /* to store the user data */
     Route::post('save-user-information',[UserDetailController::class,'store'])->name('save-user-information');
-    Route::post('save-account-preference',[UserDetailController::class,'store_account_preferences'])->name('save-account-preference');
+    Route::put('save-account-preference',[UserDetailController::class,'store_account_preferences'])->name('save-account-preference');
+    Route::put('save-user-permissions',[UserDetailController::class,'store_user_permissions'])->name('save-user-permissions');
+    Route::post('save-payout',[PayoutSettingController::class,'store'])->name('save-payout');
+    Route::post('save-attachment',[AttachmentController::class,'store'])->name('save-attachment');
+    Route::post('save-management-notes',[ManagementNoteController::class,'store'])->name('save-management-notes');
     /* for branches */
     Route::get('branch-list',[BranchController::class,'index'])->name('branch-list');
     Route::get('create-branch',[BranchController::class,'create'])->name('create-branch');

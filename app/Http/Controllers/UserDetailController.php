@@ -21,7 +21,8 @@ class UserDetailController extends Controller
     public function index()
     {
         //
-        return view('user.index');
+        $users_list = User::orderBy('id','DESC')->get();
+        return view('user.index',compact('users_list'));
     }
 
     /**
@@ -205,7 +206,7 @@ class UserDetailController extends Controller
                     DB::commit();
                     $message = str_replace(':module','User Account Preferences',trans('general_messages.create_success_message'));
                     flash($message)->success();
-                    return redirect(route('account-preference'));
+                    return redirect(route('user-permission'));
                 } else{
                     DB::rollBack();
                     flash(trans('general_messages.general_error'));
@@ -220,6 +221,40 @@ class UserDetailController extends Controller
             flash(trans('general_messages.general_error'));
             return redirect()->back();
         }*/
+    }
+
+    /**
+     * To store the user rights in user table
+     * data will be stored as json
+    */
+    public function store_user_permissions(userDetailRequest $request){
+        try {
+            $permissions_data = [
+                'standard_permissions'      => $request->standard_permissions,
+                'administrative_permission' => $request->administrative_permission
+
+            ];
+            $update_data = [
+                'rights'    => json_encode($permissions_data),
+                'updated_at'    => date('Y-m-d H:i:s')
+            ];
+            $user_id    = $request->get('user_id');
+            DB::beginTransaction();
+            $add_permissions = User::where(['id'=>$user_id])->update($update_data);
+            if ($add_permissions){
+                DB::commit();
+                $message = str_replace(':module','User Permissions',trans('general_messages.create_success_message'));
+                flash($message)->success();
+                return redirect()->to(\route('payout-setting'));
+            } else{
+                DB::rollBack();
+                flash(trans('general_messages.general_error'))->error();
+                return redirect()->back();
+            }
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'));
+            return redirect()->back();
+        }
     }
 
 }
