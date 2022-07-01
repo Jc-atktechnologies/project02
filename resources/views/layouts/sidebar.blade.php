@@ -37,13 +37,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('dossiers')}}">
+                    <a href="javascript:void(0)">
                         <i class="fe-file"></i>
                          <span>Claims</span>
+                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li><a>Create Claim</a></li>
-                        <li><a>Search Claim</a></li>
+                        <li><a href="{{route('create-claims')}}">Create Claim</a></li>
+                        <li><a href="{{route('claims-list') }}">Search Claim</a></li>
                     </ul>
                 </li>
                 <li>
@@ -58,10 +59,22 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('parametres')}}">
+                    <a href="javascript:void(0)">
                         <i class="fe-package"></i>
                          <span>Settings</span>
+                         <span class="menu-arrow"></span>
                     </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span>System Administration</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{route('custom-list')}}">Custom List</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);">

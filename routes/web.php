@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ClaimCategoryController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\ClaimsController;
+use App\Http\Controllers\CustomListController;
+use App\Http\Controllers\LossTypeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,13 +78,33 @@ Route::group(['middleware'=>'auth'],function (){
     Route::delete('delete-branch/{id}',[BranchController::class,'destroy'])->name('delete-branch');
 
     /* for claims */
-    Route::get('claims-list',[BranchController::class,'index'])->name('claims-list');
-    Route::get('create-claims',[BranchController::class,'create'])->name('create-claims');
-    Route::post('save-claims',[BranchController::class,'store'])->name('save-claims');
-    Route::get('update-claims/{claimnumber}',[BranchController::class,'edit'])->name('update-claims');
-    Route::put('edit-claims',[BranchController::class,'update'])->name('edit-claims');
-    Route::delete('delete-claims',[BranchController::class,'destroy'])->name('delete-claims');
-
+    Route::get('claims-list',[ClaimsController::class,'index'])->name('claims-list');
+    Route::get('create-claims',[ClaimsController::class,'create'])->name('create-claims');
+    Route::post('save-claims',[ClaimsController::class,'store'])->name('save-claims');
+    Route::get('update-claims/{claimnumber}',[ClaimsController::class,'edit'])->name('update-claims');
+    Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
+    Route::delete('delete-claims',[ClaimsController::class,'destroy'])->name('delete-claims');
+    Route::get('insured-details',[ClaimsController::class,'insured_details'])->name('insured-details');
+    Route::get('loss-details',[ClaimsController::class,'loss_details'])->name('loss-details');
+    Route::get('assignment-information',[ClaimsController::class,'assignment_information'])->name('assignment-information');
+    /* settings route start */
+    //system administration
+    Route::get('custom-list',[CustomListController::class,'index'])->name('custom-list');
+    /* loss type route */
+    Route::get('loss-types',[LossTypeController::class,'index'])->name('loss-types');
+    Route::get('create-loss-type',[LossTypeController::class,'create'])->name('create-loss-type');
+    Route::post('save-loss-type',[LossTypeController::class,'store'])->name('save-loss-type');
+    Route::get('update-loss-type/{id}',[LossTypeController::class,'edit'])->name('update-loss-type');
+    Route::put('edit-loss-type',[LossTypeController::class,'update'])->name('edit-loss-type');
+    Route::delete('delete-loss-type/{id}',[LossTypeController::class,'destroy'])->name('delete-loss-type');
+     /* Calim Category route */
+     Route::get('claim-categories-list',[ClaimCategoryController::class,'index'])->name('claim-categories-list');
+     Route::get('create-claim-category',[ClaimCategoryController::class,'create'])->name('create-claim-category');
+     Route::post('save-claim-category',[ClaimCategoryController::class,'store'])->name('save-claim-category');
+     Route::get('update-claim-category/{id}',[ClaimCategoryController::class,'edit'])->name('update-claim-category');
+     Route::put('edit-claim-category/{id}',[ClaimCategoryController::class,'update'])->name('edit-claim-category');
+     Route::delete('delete-claim-category/{id}',[ClaimCategoryController::class,'destroy'])->name('delete-claim-category');
+    /* settings route end */
     /* for cities */
     Route::get('cities-list',[CityController::class,'index'])->name('cities-list');
     Route::get('create-city',[CityController::class,'create'])->name('create-city');

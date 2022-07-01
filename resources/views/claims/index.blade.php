@@ -49,13 +49,13 @@
                             <td> </td>
                             <td> </td>
                             <td> </td>
-                            <td> <a href="{{route('update-claims',['id'=>$claims->claimnumber])}}" title="Edit Claim" class="btn btn-info"><i class="fa fa-edit"></i> </a>
-                                @include('general_partials.delete_partial',['delete_url'=>route('delete-claim',['id'=>$claims->claimnumber])])
+                            <td> <a href="{{route('update-claims',['claimnumber'=>$claims->claim_number])}}" title="Edit Claim" class="btn btn-info"><i class="fa fa-edit"></i> </a>
+                                @include('general_partials.delete_partial',['delete_url'=>route('delete-claims',['id'=>$claims->claimnumber])])
                             </td>
                         </tr>
                       @empty
                         <tr>
-                            <td colspan="5">{{str_replace(':module','Branch',trans('general_messages.no_record_found'))}}</td>
+                            <td colspan="10">{{str_replace(':module','Claim',trans('general_messages.no_record_found'))}}</td>
                         </tr>
                     @endforelse
                     </tbody>

@@ -48,7 +48,10 @@ if (!empty($claims_details)){
         $notes = '';
         $put_input = '';
         $heading = "Create Claim";
-        $route = route('save-claim');
+
+        $title='';
+        $status='';
+        $route = route('save-claims');
     }
 
 @endphp
@@ -62,7 +65,7 @@ if (!empty($claims_details)){
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="{{route('home')}}">{{config('app.name','Laravel')}}</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('branch-list')}}">Branches</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('branch-list')}}">Claims</a></li>
                         <li class="breadcrumb-item active">{{$heading}}</li>
                     </ol>
                 </div>
@@ -74,31 +77,21 @@ if (!empty($claims_details)){
         <div class="col-12">
             <div class="card-box">
                 @include("flash::message")
-                <form method="post" action="{{$route}}">
-                    @csrf
-                    {!! $put_input !!}
-                    <div class="form-group">
-                        <label>Claim Number</label>
-                        <input type="text" name="title" class="form-control" value="@if(old('title')){{old('title')}}@else{{$title}}@endif">
-                        @error('title')
-                        <ul class="parsley-errors-list filled" id="parsley-id-7">
-                            <li class="parsley-required">{{ $message }}</li>
-                        </ul>
-                        @enderror
+                @include('claims.claim_form_header')
+                <div class="tab-content">
+                    <div class="tab-pane @if($tab == 'insurer_details') active @else show @endif" id="insurer_details">
+                        @include('claims.insurer_details_form')
                     </div>
-                    <div class="form-group">
-                        <label>Claim Number</label>
-                        <select name="claimnumber" class="form-control">
-                            <option>---Select Option---</option>
-                            <option value="0" @if((old('status') == 0) || ($status == 0)) selected @endif>Block</option>
-                            <option value="1" @if((old('status') == 1) || ($status == 1)) selected @endif>Active</option>
-                        </select>
+                    <div class="tab-pane @if($tab == 'insured_details') active @else show @endif" id="insured_details">
+                        @include('claims.insured_details_form')
                     </div>
-                    <input type="hidden" name="id" value="{{$id}}">
-                    <div class="d-flex flex-row justify-content-center">
-                        <button type="submit" class="btn btn-success">Save</button>
+                    <div class="tab-pane @if($tab == 'loss_details') active @else show @endif" id="loss_details">
+                        @include('claims.loss_details_form')
                     </div>
-                </form>
+                    <div class="tab-pane @if($tab == 'assignment_information') active @else show @endif" id="assignment_information">
+                        @include('claims.assignment_information_form')
+                    </div>
+                </div>
             </div>
         </div>
     </div>

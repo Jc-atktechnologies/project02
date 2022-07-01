@@ -6,9 +6,10 @@ use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Claims;
+use App\Models\Insurer;
 use Illuminate\Support\Facades\DB;
 
-class BranchController extends Controller
+class ClaimsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,7 +31,10 @@ class BranchController extends Controller
     public function create()
     {
         //
-        return view('claims.form');
+        $heading = 'Insurer Details';
+        $tab     = 'insurer_details';
+        $insurers = Insurer::get();
+        return view('claims.form',compact('heading','tab','insurers'));
     }
 
     /**
@@ -142,5 +146,26 @@ class BranchController extends Controller
     public function destroy(Claims $claims)
     {
         //
+    }
+
+    public function insured_details(){
+        $heading = 'Insured Details';
+        $tab     = 'insured_details';
+        $insurers = Insurer::get();
+        return view('claims.form',compact('heading','tab','insurers'));
+    }
+
+    public function loss_details(){
+        $heading = 'Loss Details';
+        $tab     = 'loss_details';
+        $insurers = Insurer::get();
+        return view('claims.form',compact('heading','tab','insurers'));
+    }
+
+    public function assignment_information(){
+        $heading = 'Assignment Information';
+        $tab    = 'assignment_information';
+        $insurers = Insurer::get();
+        return view('claims.form',compact('heading','tab','insurers'));
     }
 }
