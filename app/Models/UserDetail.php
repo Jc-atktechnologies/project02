@@ -13,6 +13,6 @@ class UserDetail extends Model
     /* validation rules for different forms */
     public const account_preference_rules = [
         'user_id'   => 'required|integer',
-        'form_type' => 'required'
+        'user_name' => 'required|min:3|max:50'
     ];
 }
