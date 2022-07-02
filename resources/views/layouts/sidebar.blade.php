@@ -40,19 +40,37 @@
                     <a href="{{route('claims')}}">
                         <i class="fe-file"></i>
                          <span>Claims</span>
+                         <span class="menu-arrow"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('contacts')}}">
+                    <a href="javascript: void(0);">
                         <i class="fe-users"></i>
-                         <span>Contacts</span>
+                        <span>Users Management</span>
+                        <span class="menu-arrow"></span>
                     </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{route('users-list')}}">User List</a></li>
+                        <li><a href="{{route('create-user')}}">Add User</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{route('settings')}}">
                         <i class="fe-package"></i>
                          <span>Settings</span>
+                         <span class="menu-arrow"></span>
                     </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span>System</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{route('custom-list')}}">Custom List</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);">

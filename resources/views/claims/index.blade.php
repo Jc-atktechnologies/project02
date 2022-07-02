@@ -61,7 +61,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="10"></td>
+                            <td colspan="10">{{str_replace(':module','Claim',trans('general_messages.no_record_found'))}}</td>
                         </tr>
                     </tbody>
                 </table>
