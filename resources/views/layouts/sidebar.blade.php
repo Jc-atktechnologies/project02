@@ -44,7 +44,7 @@
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{route('create-claims')}}">Create claim</a></li>
-                        <li><a href="{{route('search-claims')}}">Search</a></li>
+                        <li><a href="{{route('claims-list')}}">Search</a></li>
                     </ul>
                 </li>
                 <li>
