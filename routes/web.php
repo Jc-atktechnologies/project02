@@ -82,6 +82,10 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-claims/{claimnumber}',[ClaimsController::class,'edit'])->name('update-claims');
     Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
     Route::delete('delete-claims',[ClaimsController::class,'destroy'])->name('delete-claims');
+    //get assign to user 
+    Route::get('ajax_assign_to/{type}',[ClaimsController::class,'get_assign_to_users'])->name('ajax_assign_to');
+
+
     Route::get('insured-details',[ClaimsController::class,'insured_details'])->name('insured-details');
     Route::get('loss-details',[ClaimsController::class,'loss_details'])->name('loss-details');
     Route::get('assignment-information',[ClaimsController::class,'assignment_information'])->name('assignment-information');

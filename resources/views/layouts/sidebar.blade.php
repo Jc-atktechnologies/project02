@@ -60,14 +60,16 @@
                          <span>Settings</span>
                          <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    <ul class="nav-second-level nav" aria-expanded="false">
                         <li>
                             <a href="javascript:void(0)">
                                 <span>System</span>
                                 <span class="menu-arrow"></span>
                             </a>
-                            <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="{{route('custom-list')}}">Custom List</a></li>
+                            <ul class="nav-third-level nav" aria-expanded="false">
+                                <li>
+                                    <a href="{{route('custom-list')}}">Custom List</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

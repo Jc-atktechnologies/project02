@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\ClaimCategory;
 use App\Models\Claims;
 use App\Models\Insurer;
+use App\Models\LossType;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class ClaimsController extends Controller
@@ -31,10 +34,16 @@ class ClaimsController extends Controller
     public function create()
     {
         //
-        $heading = 'Insurer Details';
-        $tab     = 'insurer_details';
         $insurers = Insurer::get();
-        return view('claims.form',compact('heading','tab','insurers'));
+        $claim_categories = ClaimCategory::get();
+        $loss_types = LossType::get();
+        $assignment_methods = [
+            ['id'=>1,'title'=>'Direct Assign'],
+            ['id'=>2,'title'=>'TTeam Assign'],
+            ['id'=>3,'title'=>'Leave Unassigned']
+        ];
+        $share_users = User::get();
+        return view('claims.form',compact('claim_categories','loss_types','insurers','assignment_methods','share_users'));
     }
 
     /**
@@ -148,24 +157,20 @@ class ClaimsController extends Controller
         //
     }
 
-    public function insured_details(){
-        $heading = 'Insured Details';
-        $tab     = 'insured_details';
-        $insurers = Insurer::get();
-        return view('claims.form',compact('heading','tab','insurers'));
-    }
 
-    public function loss_details(){
-        $heading = 'Loss Details';
-        $tab     = 'loss_details';
-        $insurers = Insurer::get();
-        return view('claims.form',compact('heading','tab','insurers'));
-    }
-
-    public function assignment_information(){
-        $heading = 'Assignment Information';
-        $tab    = 'assignment_information';
-        $insurers = Insurer::get();
-        return view('claims.form',compact('heading','tab','insurers'));
+   
+    // getting user dropdown for assign to user in add claim form
+    public function get_assign_to_users($type){
+        
+       if($type==1){
+            $users = User::get();
+            $view = view('claims.ajax.assign_to',compact('users'))->render();
+            $status =1;
+       }else{
+            $view='';
+            $status=0;
+       }
+        
+        return response()->json(['form_field'=>$view,'status'=>$status]);
     }
 }
