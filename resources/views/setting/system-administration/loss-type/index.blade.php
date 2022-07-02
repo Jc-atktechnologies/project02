@@ -22,9 +22,12 @@
     <div class="row">
         <div class="col-12">
             <div class="card-box table-responsive">
-                <div class="float-right margin-b">
-                    <a href="{{ route('create-loss-type')}}" class="btn btn-sm btn-primary "> Add Loss type</a></div>
-                @include('flash::message')
+                <h5 class="card-header bg-primary text-white"> Loss Type
+                    <div class="float-right ">
+                        <a href="{{ route('create-loss-type')}}" class="btn btn-sm btn-info "> Add Loss type</a>
+                    </div>
+                </h5>
+                 @include('flash::message')
                 <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
