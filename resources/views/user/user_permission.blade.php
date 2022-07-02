@@ -6,24 +6,30 @@
     @method('PUT')
     <input type="hidden" name="user_permission" value="1">
     <input type="hidden" name="user_id" value="{{$user_id}}">
-    @if(is_array(config('rights.standard_permissions')))
-    <div class="alert-primary alert mb-2">Standard Permissions</div>
-        @foreach(config('rights.standard_permissions') as $element => $permissions )
-                <div class="form-check">
-                    <input class="form-check-input" name="standard_permissions[]" type="checkbox" value="{{$element}}" />
-                    <label class="form-check-label">{{ ucwords(str_replace(array('_'),' ',substr_index($element,'.',-1))) }}</label>
-                </div>
-        @endforeach
-    @endif
-    @if(is_array(config('rights.administrative_permissions')))
-        <div class="alert alert-primary mb-2 mt-2">Administrative Permissions</div>
-        @foreach(config('rights.administrative_permissions') as $primary_element => $primary_permission)
-            <div class="form-check">
-                <input class="form-check-input" name="administrative_permission[]" type="checkbox" value="{{$primary_element}}">
-                <label class="form-check-label">{{ ucwords(str_replace(array('_'),' ',substr_index($primary_element,'.',-1))) }}</label>
-            </div>
-        @endforeach
-    @endif
+    <div class="row">
+        <div class="col-md-6">
+            @if(is_array(config('rights.standard_permissions')))
+                <div class="alert-primary alert mb-2">Standard Permissions</div>
+                @foreach(config('rights.standard_permissions') as $element => $permissions )
+                    <div class="form-check">
+                        <input class="form-check-input" name="standard_permissions[]" type="checkbox" value="{{$element}}" />
+                        <label class="form-check-label">{{ ucwords(str_replace(array('_'),' ',substr_index($element,'.',-1))) }}</label>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+        <div class="col-md-6">
+            @if(is_array(config('rights.administrative_permissions')))
+                <div class="alert alert-primary mb-2">Administrative Permissions</div>
+                @foreach(config('rights.administrative_permissions') as $primary_element => $primary_permission)
+                    <div class="form-check">
+                        <input class="form-check-input" name="administrative_permission[]" type="checkbox" value="{{$primary_element}}">
+                        <label class="form-check-label">{{ ucwords(str_replace(array('_'),' ',substr_index($primary_element,'.',-1))) }}</label>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
     <div class="d-flex flex-row justify-content-center">
         <button type="submit" class="btn btn-success">Save</button>
     </div>

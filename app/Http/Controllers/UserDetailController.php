@@ -21,7 +21,7 @@ class UserDetailController extends Controller
     public function index()
     {
         //
-        $users_list = User::orderBy('id','DESC')->get();
+        $users_list = User::where(['is_active'=>1])->orderBy('id','DESC')->get();
         return view('user.index',compact('users_list'));
     }
 
@@ -105,7 +105,7 @@ class UserDetailController extends Controller
                     'emergency_contact' => $request->emergency_contact,
                     'external_link' => $request->external_link,
                     'license_expiry'    => $request->license_expiry,
-                    'preferred_for' => $request->preferred_for,
+                    'preferred_for' => json_encode($request->preferred_for),
                     'rating'        => $request->rating,
                     'languages'     => $request->language_spoken,
                     'comments'      => $request->comments

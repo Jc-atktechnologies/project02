@@ -72,6 +72,6 @@ class User extends Authenticatable
     * User Relations with other tables
      */
     public function userDetail(){
-        return $this->belongsTo(UserDetail::class);
+        return $this->belongsTo(UserDetail::class,'id','user_id');
     }
 }

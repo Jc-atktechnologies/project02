@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>@if(!empty($user->userDetail->mobile_number)){{$user->userDetail->mobile_number}}@endif</td>
+                            <td>@if(!empty($user->userDetail->mobile_number)){{$user->userDetail->mobile_number}}@endif </td>
                             <td>@if(!empty($user->userDetail->claim_access)){{$user->userDetail->claim_access}}@endif</td>
                             <td>@if($user->is_active == 1)<span class="badge-success">Active</span>@else<span class="badge-danger">Block</span>@endif</td>
                             <td>
