@@ -55,7 +55,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('settings')}}">
+                    <a>
                         <i class="fe-package"></i>
                          <span>Settings</span>
                          <span class="menu-arrow"></span>
