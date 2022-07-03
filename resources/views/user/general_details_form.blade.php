@@ -122,6 +122,41 @@
                 @enderror
             </div>
         </div>
+        {{--<div class="col-md-6">
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" name="address" id="address-input" class="form-control" value="@if(old('address')){{old('address')}}@else{{$address}}@endif">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" name="city" id="address-latitude" class="form-control" value="@if(old('city')){{old('city')}}@else{{$city}}@endif" readonly>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Prov/State</label>
+                <input type="text" name="state" id="address-longitude" class="form-control" value="@if(old('state')){{old('state')}}@else{{$state}}@endif" readonly>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Country</label>
+                <input type="text" name="country" id="country" class="form-control" value="@if(old('country')){{old('country')}}@else{{$country}}@endif" readonly>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Postal/Zip</label>
+                <input type="text" name="zip_code" id="zip_code" class="form-control" value="@if(old('zip_code')){{old('zip_code')}}@else{{$zip_code}}@endif">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div id="address-map-container" style="width:100%;height:400px; ">
+                <div style="width: 100%; height: 100%" id="address-map"></div>
+            </div>
+        </div>--}}
         <div class="alert-primary alert col-md-12">Other Information</div>
         <div class="col-md-6">
             <div class="form-group">

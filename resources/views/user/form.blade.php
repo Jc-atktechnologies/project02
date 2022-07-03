@@ -35,13 +35,18 @@
         $amount                 = $user_details->amount;
         $license_expiry         = date('Y-m-d',strtotime($user_details->license_expiry));
         $emergency_contact      = $user_details->emergency_contact;
+        $address                = $user_details->address;
+        $city                   = $user_details->city;
+        $state                  = $user_details->state;
+        $country                = $user_details->country;
+        $zip_code               = $user_details->zip_code;
     } else{
         $id                     = '';
         $name                   = '';
         $email                  = '';
         $is_active              = '';
         $password               = '';
-        $rights                 = '';
+        $rights                 = [];
         $first_name             = '';
         $last_name              = '';
         $title                  = '';
@@ -59,7 +64,7 @@
         $claim_access           = '';
         $analytics_view         = '';
         $interface_theme        = '';
-        $calendar_viewable_by   = '';
+        $calendar_viewable_by   = [];
         $calendar_setting       = '';
         $internal_email         = '';
         $file_name              = '';
@@ -70,6 +75,11 @@
         $amount                 = '';
         $license_expiry         = '';
         $emergency_contact      = '';
+        $address                = '';
+        $city                   = '';
+        $state                  = '';
+        $country                = '';
+        $zip_code               = '';
     }
 @endphp
 @section('content')
@@ -123,4 +133,92 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('customejs')
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+    <script type="text/javascript">
+        function initialize() {
+
+            $('form').on('keyup keypress', function(e) {
+                var keyCode = e.keyCode || e.which;
+                if (keyCode === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            const locationInputs = document.getElementsByClassName("map-input");
+
+            const autocompletes = [];
+            const geocoder = new google.maps.Geocoder;
+            for (let i = 0; i < locationInputs.length; i++) {
+
+                const input = locationInputs[i];
+                const fieldKey = input.id.replace("-input", "");
+                const isEdit = document.getElementById(fieldKey + "-latitude").value != '' && document.getElementById(fieldKey + "-longitude").value != '';
+
+                const latitude = parseFloat(document.getElementById(fieldKey + "-latitude").value) || -33.8688;
+                const longitude = parseFloat(document.getElementById(fieldKey + "-longitude").value) || 151.2195;
+
+                const map = new google.maps.Map(document.getElementById(fieldKey + '-map'), {
+                    center: {lat: latitude, lng: longitude},
+                    zoom: 13
+                });
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: {lat: latitude, lng: longitude},
+                });
+
+                marker.setVisible(isEdit);
+
+                const autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.key = fieldKey;
+                autocompletes.push({input: input, map: map, marker: marker, autocomplete: autocomplete});
+            }
+
+            for (let i = 0; i < autocompletes.length; i++) {
+                const input = autocompletes[i].input;
+                const autocomplete = autocompletes[i].autocomplete;
+                const map = autocompletes[i].map;
+                const marker = autocompletes[i].marker;
+
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    marker.setVisible(false);
+                    const place = autocomplete.getPlace();
+
+                    geocoder.geocode({'placeId': place.place_id}, function (results, status) {
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            const lat = results[0].geometry.location.lat();
+                            const lng = results[0].geometry.location.lng();
+                            setLocationCoordinates(autocomplete.key, lat, lng);
+                        }
+                    });
+
+                    if (!place.geometry) {
+                        window.alert("No details available for input: '" + place.name + "'");
+                        input.value = "";
+                        return;
+                    }
+
+                    if (place.geometry.viewport) {
+                        map.fitBounds(place.geometry.viewport);
+                    } else {
+                        map.setCenter(place.geometry.location);
+                        map.setZoom(17);
+                    }
+                    marker.setPosition(place.geometry.location);
+                    marker.setVisible(true);
+
+                });
+            }
+        }
+
+        function setLocationCoordinates(key, lat, lng) {
+            const latitudeField = document.getElementById(key + "-" + "latitude");
+            const longitudeField = document.getElementById(key + "-" + "longitude");
+            latitudeField.value = lat;
+            longitudeField.value = lng;
+        }
+    </script>
+
 @endsection

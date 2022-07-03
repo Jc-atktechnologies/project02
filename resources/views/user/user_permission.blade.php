@@ -12,7 +12,7 @@
                 <div class="alert-primary alert mb-2">Standard Permissions</div>
                 @foreach(config('rights.standard_permissions') as $element => $permissions )
                     <div class="form-check">
-                        <input class="form-check-input" name="standard_permissions[]" type="checkbox" value="{{$element}}" @if(in_array($element,$rights['standard_permissions'])) checked @endif />
+                        <input class="form-check-input" name="standard_permissions[]" type="checkbox" value="{{$element}}" @if(!empty($rights) && in_array($element,$rights['standard_permissions'])) checked @endif />
                         <label class="form-check-label">{{ ucwords(str_replace(array('_'),' ',substr_index($element,'.',-1))) }}</label>
                     </div>
                 @endforeach
@@ -23,7 +23,7 @@
                 <div class="alert alert-primary mb-2">Administrative Permissions</div>
                 @foreach(config('rights.administrative_permissions') as $primary_element => $primary_permission)
                     <div class="form-check">
-                        <input class="form-check-input" name="administrative_permission[]" type="checkbox" value="{{$primary_element}}" @if(in_array($primary_element,$rights['administrative_permission'])) checked @endif>
+                        <input class="form-check-input" name="administrative_permission[]" type="checkbox" value="{{$primary_element}}" @if(!empty($rights) && in_array($primary_element,$rights['administrative_permission'])) checked @endif>
                         <label class="form-check-label">{{ ucwords(str_replace(array('_'),' ',substr_index($primary_element,'.',-1))) }}</label>
                     </div>
                 @endforeach

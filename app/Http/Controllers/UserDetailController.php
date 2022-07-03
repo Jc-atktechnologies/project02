@@ -322,7 +322,7 @@ class UserDetailController extends Controller
                     'analytics_view'        => $request->analytics_view,
                     'interface_theme'       => $request->interface_theme,
                     'calendar_viewable_by'  => json_encode($request->calendar_viewable_by),
-                    'calendar_setting'      => $request->calendar_setting,
+                    'calendar_setting'      => $request->get('calendar_setting',0),
                     'internal_email'        => $request->get('internal_email',0)
                 ];
                 $update_user_data = UserDetail::where(['user_id'=>$user_id])->update($user_detail_data);
@@ -406,7 +406,7 @@ class UserDetailController extends Controller
                     'analytics_view'        => $request->analytics_view,
                     'interface_theme'       => $request->interface_theme,
                     'calendar_viewable_by'  => json_encode($request->calendar_viewable_by),
-                    'calendar_setting'      => $request->calendar_setting,
+                    'calendar_setting'      => $request->get('calendar_setting',0),
                     'internal_email'        => $request->get('internal_email',0)
                 ];
                 $update_user_data = UserDetail::where(['user_id'=>$user_id])->update($user_detail_data);

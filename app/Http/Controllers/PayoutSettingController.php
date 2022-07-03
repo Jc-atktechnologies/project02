@@ -56,7 +56,7 @@ class PayoutSettingController extends Controller
                 if (Route::currentRouteName() == 'update-payout'){
                     return redirect()->to(route('change-attachments',['id'=>$request->user_id]));
                 } else{
-                    return redirect()->to(route('team-membership'));
+                    return redirect()->to(route('attachments'));
                 }
             } else{
                 DB::rollBack();
