@@ -39,10 +39,10 @@
                             <td>{{$user->email}}</td>
                             <td>@if(!empty($user->userDetail->mobile_number)){{$user->userDetail->mobile_number}}@endif </td>
                             <td>@if(!empty($user->userDetail->claim_access)){{$user->userDetail->claim_access}}@endif</td>
-                            <td>@if($user->is_active == 1)<span class="badge-success">Active</span>@else<span class="badge-danger">Block</span>@endif</td>
+                            <td>@if($user->is_active == 1)<span class="badge-success p-2">Active</span>@else<span class="badge-danger p-2">Block</span>@endif</td>
                             <td>
-                                <a href="{{route('update-branch',['id'=>$user->id])}}" title="Edit Branch" class="btn btn-info"><i class="fa fa-edit"></i> </a>
-                                @include('general_partials.delete_partial',['delete_url'=>route('delete-branch',['id'=>$user->id])])
+                                <a href="{{route('update-user',['id'=>$user->id])}}" title="Edit Branch" class="btn btn-info"><i class="fa fa-eye"></i> </a>
+                                @if($user->is_active == 1) @include('general_partials.delete_partial',['delete_url'=>route('delete-branch',['id'=>$user->id])]) @endif
                             </td>
                         </tr>
                     @empty

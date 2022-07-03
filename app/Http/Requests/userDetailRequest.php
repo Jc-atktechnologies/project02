@@ -30,8 +30,15 @@ class userDetailRequest extends FormRequest
     public function rules()
     {
         if ($this->request->has('account_preference')){
-          $rules = UserDetail::account_preference_rules;
-          $rules['password'] = ['required','string',new isValidPassword()];
+            if ($this->getMethod() == 'POST'){
+                $rules = UserDetail::account_preference_rules;
+                $rules['password'] = ['required','string',new isValidPassword()];
+                return $rules;
+            } else{
+                $rules = UserDetail::account_preference_rules;
+                return $rules;
+            }
+
           return $rules;
         } elseif ($this->request->has('user_permission')){
             return User::user_permission_rules;
@@ -46,7 +53,16 @@ class userDetailRequest extends FormRequest
         } elseif ($this->request->has('management_notes')){
             return ManagementNote::user_management_note_rules;
         } else{
-            return User::user_rules;
+            if ($this->getMethod() == 'POST'){
+                $rules = User::user_rules;
+                $rules['email']     = "required|email|unique:users";
+                return $rules;
+            } else{
+                $rules = User::user_rules;
+                $rules['email'] = "required|email|unique:users,email,".request()->get('user_id');
+                return $rules;
+            }
+
         }
     }
 }

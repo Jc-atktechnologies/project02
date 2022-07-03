@@ -6,6 +6,7 @@ use App\Http\Requests\userDetailRequest;
 use App\Models\Attatchment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class AttachmentController extends Controller
 {
@@ -60,10 +61,14 @@ class AttachmentController extends Controller
             DB::beginTransaction();
             $save_attachment = Attatchment::insert($save_data);
             if ($save_attachment){
-                DB::commit();
                 $message = str_replace(':module','Attachment',trans('general_messages.create_success_message'));
                 flash($message)->success();
-                return redirect()->to(route('management-notes'));
+                DB::commit();
+                if (Route::currentRouteName() == 'update-attachment'){
+                    return redirect()->to(route('change-management-notes',['id'=>$user_id]));
+                } else{
+                    return redirect()->to(route('management-notes'));
+                }
             } else{
                 DB::rollBack();
                 flash(trans('general_messages.general_error'));

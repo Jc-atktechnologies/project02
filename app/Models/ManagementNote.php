@@ -16,4 +16,11 @@ class ManagementNote extends Model
         'user_id'   => 'required|integer',
         'note'      => 'required'
     ];
+    /**
+     * to get the user name, who added the file
+     * function will return the user name
+     */
+    public function userDetail(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

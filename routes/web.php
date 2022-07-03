@@ -77,6 +77,19 @@ Route::group(['middleware'=>'auth'],function (){
     Route::post('save-payout',[PayoutSettingController::class,'store'])->name('save-payout');
     Route::post('save-attachment',[AttachmentController::class,'store'])->name('save-attachment');
     Route::post('save-management-notes',[ManagementNoteController::class,'store'])->name('save-management-notes');
+    /* to update user */
+    Route::get('update-user/{id}',[UserDetailController::class,'edit'])->name('update-user');
+    Route::get('change-account-preference/{id}',[UserDetailController::class,'edit'])->name('change-account-preference');
+    Route::get('change-user-permission/{id}',[UserDetailController::class,'edit'])->name('change-user-permission');
+    Route::get('change-payout-setting/{id}',[UserDetailController::class,'edit'])->name('change-payout-setting');
+    Route::get('change-attachments/{id}',[UserDetailController::class,'edit'])->name('change-attachments');
+    Route::get('change-management-notes/{id}',[UserDetailController::class,'edit'])->name('change-management-notes');
+    Route::put('update-user-information',[UserDetailController::class,'update'])->name('update-user-information');
+    Route::put('update-account-preference',[UserDetailController::class,'update_account_preferences'])->name('update-account-preference');
+    Route::put('update-user-permissions',[UserDetailController::class,'store_user_permissions'])->name('update-user-permissions');
+    Route::post('update-payout',[PayoutSettingController::class,'store'])->name('update-payout');
+    Route::post('update-attachment',[AttachmentController::class,'store'])->name('update-attachment');
+    Route::post('update-management-notes',[ManagementNoteController::class,'store'])->name('update-management-notes');
     /* for branches */
     Route::get('branch-list',[BranchController::class,'index'])->name('branch-list');
     Route::get('create-branch',[BranchController::class,'create'])->name('create-branch');
