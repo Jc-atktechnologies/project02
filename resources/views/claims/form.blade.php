@@ -1,71 +1,17 @@
 @extends ('layouts.app')
-
-@php
-if (!empty($claims_details)){
-        $id    = $claims_details->id;
-        $claimnumber = $claims_details->claim_number;
-        $date_time_loss = $claims_details->date_time_loss;
-        $date_time_reported = $claims_details->date_time_reported;
-        $gross_loss_value = $claims_details->gross_loss_value;
-        $actual_cash_value = $claims_details->actual_cash_value;
-        $replacement_cost = $claims_details->replacement_cost;
-        $loss_type = $claims_details->loss_type;
-        $loss_cause = $claims_details->loss_cause;
-        $line_of_business = $claims_details->line_of_business;
-        $treaty_year = $claims_details->treaty_year;
-        $treaty_type = $claims_details->treaty_type;
-        $stat_limitations = $claims_details->stat_limitations;
-        $cat_code = $claims_details->cat_code;
-        $loss_location = $claims_details->loss_location;
-        $loss_city = $claims_details->loss_city;
-        $loss_province = $claims_details->loss_province;
-        $loss_postal = $claims_details->loss_postal;
-        $loss_description = $claims_details->loss_description;
-        $notes = $claims_details->notes;
-        $put_input              = '<input type="hidden" name="_method" value="PUT">';
-        $heading = "Update Claim";
-        $route   = route('edit-claim');
-    } else{
-        $id    = '';
-        $claimnumber = '';
-        $date_time_loss = '';
-        $date_time_reported = '';
-        $gross_loss_value = '';
-        $actual_cash_value = '';
-        $replacement_cost = '';
-        $loss_type = '';
-        $loss_cause = '';
-        $line_of_business = '';
-        $treaty_year = '';
-        $treaty_type = '';
-        $stat_limitations = '';
-        $cat_code = '';
-        $loss_location = '';
-        $loss_city = '';
-        $loss_province = '';
-        $loss_postal = '';
-        $loss_description = '';
-        $notes = '';
-        $put_input = '';
-        $heading = "Create Claim";
-        $route = route('save-claim');
-    }
-
-@endphp
-
 @section('content')
-
 <!-- start page title -->
 <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="{{route('home')}}">{{config('app.name','Laravel')}}</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('branch-list')}}">Branches</a></li>
-                        <li class="breadcrumb-item active">{{$heading}}</li>
+                        <li class="breadcrumb-item"><a href="{{route('home')}}">{{ config('app.name', 'Laravel') }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('claims-list')}}">Settings</a></li>
+                        <li class="breadcrumb-item active">Add New Claim</li>
                     </ol>
                 </div>
+                <h4 class="page-title">Add New Claim</h4>
             </div>
         </div>
     </div>
@@ -74,27 +20,301 @@ if (!empty($claims_details)){
         <div class="col-12">
             <div class="card-box">
                 @include("flash::message")
-                <form method="post" action="{{$route}}">
-                    @csrf
-                    {!! $put_input !!}
-                    <div class="form-group">
-                        <label>Claim Number</label>
-                        <input type="text" name="title" class="form-control" value="@if(old('title')){{old('title')}}@else{{$title}}@endif">
-                        @error('title')
-                        <ul class="parsley-errors-list filled" id="parsley-id-7">
-                            <li class="parsley-required">{{ $message }}</li>
-                        </ul>
-                        @enderror
+                <form action="" method="post">
+                    <!-- insurer section -->
+                    <div class="alert-primary alert">Insurer Detail</div>
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Isurer : <span class="text-danger">*</span></label>
+                                <select name="insurer_id" id="insurer_id" class="form-control">
+                                    <option value="">Select Insurer</option>
+                                    @foreach($insurers as $insurer)
+                                        <option value="{{$insurer->id}}">{{ $insurer->company_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Policy Number</label>
+                                <input type="text"class="form-control" name="policy_number" id="policy_number">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Claim Number</label>
-                        <select name="claimnumber" class="form-control">
-                            <option>---Select Option---</option>
-                            <option value="0" @if((old('status') == 0) || ($status == 0)) selected @endif>Block</option>
-                            <option value="1" @if((old('status') == 1) || ($status == 1)) selected @endif>Active</option>
-                        </select>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Inside Rep : <span class="text-danger">*</span></label>
+                                <select name="rep" id="rep" class="form-control">
+                                    <option value="">Please Select</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Insurer Claim Number</label>
+                                <input type="text"class="form-control" name="claim_number" id="claim_number">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
                     </div>
-                    <input type="hidden" name="id" value="{{$id}}">
+                    <!-- row end -->
+                    <!-- insurer section end -->
+                    <!-- Insured Section start -->
+                    <div class="alert-primary alert">Insured Detail</div>
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Insured: <span class="text-danger">*</span></label>
+                                <input type="text"class="form-control" name="insured" id="insured">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Prov/State : <span class="text-danger">*</span></label>
+                                <select name="state_id" id="state_id" class="form-control">
+                                    <option value="">Please Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-12 start -->
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea row="3" class="form-control" name="address" id="address"></textarea>
+                            </div>
+                        </div>
+                        <!-- col-12 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Country: </label>
+                                <input type="text"class="form-control" name="country_id" id="country_id">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>City: </label>
+                                <input type="text"class="form-control" name="city" id="city">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Zip/Postal: </label>
+                                <input type="text"class="form-control" name="zip_code" id="zip_code">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Email: </label>
+                                <input type="text"class="form-control" name="email" id="email">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Phone: </label>
+                                <input type="text"class="form-control" name="phone" id="phone">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Cell: </label>
+                                <input type="text"class="form-control" name="cell" id="cell">
+                            </div>
+                        </div>
+                         <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- insured section end -->
+                    <!-- Loss section start -->
+                    <div class="alert-primary alert">Loss Detail</div>
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Date Of Loss : </label>
+                                <input type="date"class="form-control" name="date_of_loss" id="date_of_loss">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Time of Loss</label>
+                                <input type="time"class="form-control" name="time_of_loss" id="time_of_loss">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Loss Type : <span class="text-danger">*</span></label>
+                                <select name="loss_type" id="loss_type" class="form-control">
+                                    <option value=""> Please Select</option>
+                                    @foreach($loss_types as $type)
+                                    <option value="{{$type->id}}">{{ $type->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Reported Date :</label>
+                                <input type="date"class="form-control" name="reported_date" id="reported_date">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Loss Location : <span class="text-danger">*</span></label>
+                                <textarea row="3" class="form-control" name="loss_location" id="loss_location" Autocomplete=""></textarea>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Loss Description</label>
+                                <textarea row="3" class="form-control" name="loss_location" id="loss_location"></textarea>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Loss Country : </label>
+                                <input type="text"class="form-control" name="loss_country" id="loss_country">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Additional Notes :</label>
+                                <textarea row="3" class="form-control" name="loss_location" id="loss_location"></textarea>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- loss section end -->
+                    <!-- Assignment information section start -->
+                    <div class="alert-primary alert">Assignment Information</div>
+                     <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Claim Category : </label>
+                                <select name="claim_category" id="claim_category" class="form-control">
+                                    <option value=""> Please Select</option>
+                                    @foreach($claim_categories as $category)
+                                    <option value="{{$category->id}}">{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Assignment Method : <span class="text-danger">*</span></label>
+                                <select name="assignment_method" id="assignment_method" class="form-control" onchange=" return ToggleAssignTo(this.value)">
+                                    <option value=""> Please Select</option>
+                                    @foreach($assignment_methods as $assignment_method)
+                                    <option value="{{$assignment_method['id']}}">{{ $assignment_method['title'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- row start -->
+                    <div class="row">
+                        <!-- col-6 start -->
+                        <div class="col-6" style="display: none;" id="assign">
+                            
+                        </div>
+                        <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Share With :</label>
+                                <select name="share_with" id="share_with" class="form-control">
+                                    <option value=""> Please Select</option>
+                                    @foreach($share_users as $user)
+                                    <option value="{{$user->id}}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
+                    </div>
+                    <!-- row end -->
+                    <!-- Assignment information section end -->
                     <div class="d-flex flex-row justify-content-center">
                         <button type="submit" class="btn btn-success">Save</button>
                     </div>
@@ -103,5 +323,10 @@ if (!empty($claims_details)){
         </div>
     </div>
 
-
+@push('customejs')
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNXNhr4HCbfCYEoo37DQ1TrAsL60VS63A&libraries=places">
+</script>
+<script src="{{asset('assets/js/ajax.js')}}"></script>
+@endpush
 @endsection

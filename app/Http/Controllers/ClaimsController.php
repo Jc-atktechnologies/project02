@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\ClaimCategory;
 use App\Models\Claims;
+use App\Models\Insurer;
+use App\Models\LossType;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
-class BranchController extends Controller
+class ClaimsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +23,7 @@ class BranchController extends Controller
     {
         //
         $claims_data = Claims::get();
-        return view('claims.index',compact('claims_data'));
+        return view('claims.index',compact('claims'));
     }
 
     /**
@@ -30,7 +34,16 @@ class BranchController extends Controller
     public function create()
     {
         //
-        return view('claims.form');
+        $insurers = Insurer::get();
+        $claim_categories = ClaimCategory::get();
+        $loss_types = LossType::get();
+        $assignment_methods = [
+            ['id'=>1,'title'=>'Direct Assign'],
+            ['id'=>2,'title'=>'TTeam Assign'],
+            ['id'=>3,'title'=>'Leave Unassigned']
+        ];
+        $share_users = User::get();
+        return view('claims.form',compact('claim_categories','loss_types','insurers','assignment_methods','share_users'));
     }
 
     /**
@@ -142,5 +155,22 @@ class BranchController extends Controller
     public function destroy(Claims $claims)
     {
         //
+    }
+
+
+   
+    // getting user dropdown for assign to user in add claim form
+    public function get_assign_to_users($type){
+        
+       if($type==1){
+            $users = User::get();
+            $view = view('claims.ajax.assign_to',compact('users'))->render();
+            $status =1;
+       }else{
+            $view='';
+            $status=0;
+       }
+        
+        return response()->json(['form_field'=>$view,'status'=>$status]);
     }
 }

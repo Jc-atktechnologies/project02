@@ -31,19 +31,20 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('calendrier')}}">
+                    <a href="{{route('calendar')}}">
                         <i class="fe-calendar"></i>
                          <span>Calendar</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('dossiers')}}">
+                    <a href="javascript: void(0);">
                         <i class="fe-file"></i>
                          <span>Claims</span>
+                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li><a>Create Claim</a></li>
-                        <li><a>Search Claim</a></li>
+                        <li><a href="{{route('create-claims')}}">Create claim</a></li>
+                        <li><a href="{{route('claims-list')}}">Search</a></li>
                     </ul>
                 </li>
                 <li>
@@ -58,10 +59,24 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('parametres')}}">
+                    <a>
                         <i class="fe-package"></i>
                          <span>Settings</span>
+                         <span class="menu-arrow"></span>
                     </a>
+                    <ul class="nav-second-level nav" aria-expanded="false">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <span>System</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-third-level nav" aria-expanded="false">
+                                <li>
+                                    <a href="{{route('custom-list')}}">Custom List</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);">

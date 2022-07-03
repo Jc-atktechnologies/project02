@@ -35,7 +35,6 @@ return new class extends Migration
             $table->string('loss_postal');
             $table->string('loss_description');
             $table->string('notes');
-            $table->rememberToken();
             $table->timestamps();
 
         });
