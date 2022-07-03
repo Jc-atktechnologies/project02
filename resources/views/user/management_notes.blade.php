@@ -37,7 +37,7 @@
                 <tr>
                     <td>{{$management->userDetail->name}}</td>
                     <td>{{$management->note}}</td>
-                    <td>@if($management->is_urgent == 1)<span class="badge-success p-2">Yes</span>@else<span class="badge-danger p-2">No</span>@endif</td>
+                    <td>@if($management->is_urgent == 1)<span class="badge badge-success p-2">Yes</span>@else<span class="badge badge-danger p-2">No</span>@endif</td>
                 </tr>
             @endforeach
         </tbody>
