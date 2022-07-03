@@ -16,3 +16,9 @@ if (!function_exists('substr_index')) {
         }
     }
 }
+
+if (!function_exists('allow_delete')){
+    function allow_delete($user_id){
+
+    }
+}
