@@ -11,6 +11,7 @@ use App\Http\Controllers\CustomListController;
 use App\Http\Controllers\LossTypeController;
 use App\Http\Controllers\PayoutSettingController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\ManagementNoteController;
 /*
 |--------------------------------------------------------------------------
@@ -134,6 +135,14 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
     Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
     Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
+
+    /* for insurers */
+    Route::get('insurer-list',[InsurerController::class,'index'])->name('insurer-list');
+    Route::get('create-insurer',[InsurerController::class,'create'])->name('create-insurer');
+    Route::post('save-insurer',[InsurerController::class,'store'])->name('save-insurer');
+    Route::get('update-insurer/{id}',[InsurerController::class,'edit'])->name('update-insurer');
+    Route::put('edit-insurer/{id}',[InsurerController::class,'update'])->name('edit-insurer');
+    Route::delete('delete-insurer/{id}',[InsurerController::class,'destroy'])->name('delete-insurer');
 });
 
 Auth::routes();

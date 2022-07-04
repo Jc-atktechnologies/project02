@@ -22,7 +22,7 @@ class ClaimsController extends Controller
     public function index()
     {
         //
-        $claims_data = Claims::get();
+        $claims = Claims::get();
         return view('claims.index',compact('claims'));
     }
 

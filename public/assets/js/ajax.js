@@ -1,42 +1,38 @@
-// $(document).ready(function () {
-//     google.maps.event.addEventListener(window, 'load', initialize);
-//  });
-//  function initialize() {
-//     const input = document.getElementById("loss_location");
-
-// const autocomplete = new google.maps.places.Autocomplete(input, options);
+function initialize() {
    
-// }
-
-google.maps.event.addDomListener(window, 'load', function() {
-    var places = new google.maps.places.Autocomplete(document
-            .getElementById('loss_location'));
-    google.maps.event.addListener(places, 'place_changed', function() {
-        var place = places.getPlace();
-        var address = place.formatted_address;
-        var  value = address.split(",");
-        console.log(value);
-        // count=value.length;
-        // country=value[count-1];
-        // state=value[count-2];
-        // city=value[count-3];
-        // var z=state.split(" ");
-        // document.getElementById("selCountry").text = country;
-        // var i =z.length;
-        // document.getElementById("pstate").value = z[1];
-        // if(i>2)
-        // document.getElementById("pzcode").value = z[2];
-        // document.getElementById("pCity").value = city;
-        // var latitude = place.geometry.location.lat();
-        // var longitude = place.geometry.location.lng();
-        // var mesg = address;
-        // document.getElementById("txtPlaces").value = mesg;
-        // var lati = latitude;
-        // document.getElementById("plati").value = lati;
-        // var longi = longitude;
-        // document.getElementById("plongi").value = longi;            
+    var input = document.getElementById('address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        let check_postal_code =0;
+        for (var i = 0; i < place.address_components.length; i++) {
+            for (var j = 0; j < place.address_components[i].types.length; j++) {
+                if (place.address_components[i].types[j] == "postal_code") {
+                    check_postal_code=1;
+                    document.getElementById('zipcode').value = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j]=='country'){
+                    document.getElementById('country').value=place.address_components[i].long_name
+                }
+                if(place.address_components[i].types[j]=='locality' || place.address_components[i].types[j]=='administrative_area_level_3')
+                {
+                    document.getElementById('city').value = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j]=='administrative_area_level_1')
+                {
+                    document.getElementById('state').value = place.address_components[i].long_name;
+                }
+               
+            }
+          }
+          if(check_postal_code==0){
+            document.getElementById('zipcode').value='';
+          }
     });
-});
+   
+  }
+  
+  //google.maps.event.addDomListener(window, 'load', initialize);
 
 function ToggleAssignTo(val)
 {
