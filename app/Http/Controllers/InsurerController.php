@@ -83,7 +83,18 @@ class InsurerController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            if (empty($id)){
+                flash(trans('general_messages.url_change_error'))->error();
+                return redirect()->back();
+            }
+            $insurer = Insurer::with('branch')->where('id','=',$id)->first();
+            $view = view('insurer.show',compact('insurer'))->render();
+            return response()->json(['view'=>$view]);
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'))->error();
+            return redirect()->back();
+        }
     }
 
     /**

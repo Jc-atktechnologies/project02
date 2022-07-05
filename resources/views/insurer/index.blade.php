@@ -29,16 +29,8 @@
                         <th>Company</th>
                         <th>Branch</th>
                         <th>Address</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Country</th>
-                        <th>Postal Code</th>
-                        <th>Phone</th>
-                        <th>Fax</th>
-                        <th>Email</th>
-                        <th>Alt Email</th>
-                        <th>Alt Phone</th>
-                        <th>Note</th>
+                        <th>Internal Reps</th>
+                        <th>Detail</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -48,16 +40,8 @@
                             <td>{{ $insurer->company_name }}</td>
                             <td>{{ $insurer->branch?->title }}</td>
                             <td>{{ $insurer->insurer_address }}</td>
-                            <td>{{ $insurer->insurer_city }}</td>
-                            <td>{{ $insurer->insurer_province }}</td>
-                            <td>{{ $insurer->insurer_country }}</td>
-                            <td>{{ $insurer->insurer_postal }}</td>
-                            <td>{{ $insurer->insurer_phone }}</td>
-                            <td>{{ $insurer->insurer_fax }}</td>
-                            <td>{{ $insurer->insurer_email }}</td>
-                            <td>{{ $insurer->insurer_altemail }}</td>
-                            <td>{{ $insurer->insurer_altphone }}</td>
-                            <td>{{ $insurer->insurer_notes }}</td>
+                            <td><a href="{{route('representative-list',['id'=>$insurer->id])}}" title="Representative List" class="btn btn-info">View </a></td>
+                            <td><button type="submit" onclick=" return GetInsurerDetail('{{$insurer->id}}')" class="btn btn-info">View</button></td>
                             <td> 
                                 <a href="{{route('update-insurer',['id'=>$insurer->id])}}" title="Edit Insurer" class="btn btn-info"><i class="fa fa-edit"></i> </a>
                                 @include('general_partials.delete_partial',['delete_url'=>route('delete-insurer',['id'=>$insurer->id])])
@@ -74,4 +58,26 @@
         </div>
     </div>
 
+    <!-- modal sectin for insurer detail -->
+    <div class="modal" tabindex="-1" role="dialog" id="OpenInsureDetail">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="heading">Insurer's Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="output">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    @push('customejs')
+    <script src="{{asset('assets/js/ajax.js')}}"></script>
+    @endpush
 @endsection

@@ -13,6 +13,9 @@ use App\Http\Controllers\PayoutSettingController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\ManagementNoteController;
+use App\Http\Controllers\RepresentativeController;
+use App\Models\Representative;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -143,6 +146,14 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-insurer/{id}',[InsurerController::class,'edit'])->name('update-insurer');
     Route::put('edit-insurer/{id}',[InsurerController::class,'update'])->name('edit-insurer');
     Route::delete('delete-insurer/{id}',[InsurerController::class,'destroy'])->name('delete-insurer');
+    Route::get('insurer-detail/{id}',[InsurerController::class,'show'])->name('insurer-detail');
+    // for insurer's representative 
+    Route::get('representative-list/{id?}',[RepresentativeController::class,'index'])->name('representative-list');
+    Route::get('create-representative/{id}',[RepresentativeController::class,'create'])->name('create-representative');
+    Route::post('save-representative',[RepresentativeController::class,'store'])->name('save-representative');
+    Route::get('update-representative/{id}',[RepresentativeController::class,'edit'])->name('update-representative');
+    Route::put('edit-representative/{id}',[RepresentativeController::class,'update'])->name('edit-representative');
+    Route::delete('delete-representative/{id}',[RepresentativeController::class,'destroy'])->name('delete-representative');
 });
 
 Auth::routes();

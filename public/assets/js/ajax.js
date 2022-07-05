@@ -1,3 +1,4 @@
+// function for addres and prefill data for insurer
 function initialize() {
    
     var input = document.getElementById('address');
@@ -31,9 +32,7 @@ function initialize() {
     });
    
   }
-  
-  //google.maps.event.addDomListener(window, 'load', initialize);
-
+//   claim assign method related functionality
 function ToggleAssignTo(val)
 {
     let target_area = document.getElementById('assign');
@@ -55,3 +54,21 @@ function ToggleAssignTo(val)
         }
     });
 }
+
+
+// get Insurer Detail and show on modal 
+function GetInsurerDetail(id)
+    {
+        $.ajax({
+                type: "GET",
+                url: '/insurer-detail/'+id,
+                success: function (response) {
+                    document.getElementById('output').innerHTML= response.view;
+                    $('#OpenInsureDetail').modal('show');
+                },
+               error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+                
+    }
