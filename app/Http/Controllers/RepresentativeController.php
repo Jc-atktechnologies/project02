@@ -22,7 +22,7 @@ class RepresentativeController extends Controller
                 return redirect()->back();
             }
             
-            $representatives = Representative::with('insurer')->get();
+            $representatives = Representative::where('insurer_id',$id)->with('insurer')->get();
             return view('insurer.representative.index',compact('representatives','id'));
 
         }
