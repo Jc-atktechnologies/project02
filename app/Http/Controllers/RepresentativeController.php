@@ -198,4 +198,22 @@ class RepresentativeController extends Controller
             return redirect()->back();
         }
     }
+    // ajax function using in claim module
+    // params insurer id
+    // return representative dropdown
+    public function GetRepresentativeByInsurerId($id)
+    {
+        try {
+            if (empty($id)){
+                flash(trans('general_messages.url_change_error'))->error();
+                return redirect()->back();
+            }
+            $representatives = Representative::where('insurer_id','=',$id)->get();
+            $view = view('insurer.representative.ajax-dropdown',compact('representatives'))->render();
+            return response()->json(['view'=>$view]);
+        } catch (\Exception $exception){
+            flash(trans('general_messages.general_error'))->error();
+            return redirect()->back();
+        }
+    }
 }

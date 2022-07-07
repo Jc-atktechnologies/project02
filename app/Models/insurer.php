@@ -20,4 +20,9 @@ class Insurer extends Model
     {
         return $this->belongsTo(Branch::class);
     }
+
+    public function representative(){
+
+        return $this->hasOne(Representative::class);
+    }
 }

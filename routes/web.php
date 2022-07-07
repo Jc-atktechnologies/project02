@@ -97,7 +97,8 @@ Route::group(['middleware'=>'auth'],function (){
     Route::post('save-claims',[ClaimsController::class,'store'])->name('save-claims');
     Route::get('update-claims/{claimnumber}',[ClaimsController::class,'edit'])->name('update-claims');
     Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
-    Route::delete('delete-claims',[ClaimsController::class,'destroy'])->name('delete-claims');
+    Route::delete('delete-claims/{id}',[ClaimsController::class,'destroy'])->name('delete-claims');
+    Route::get('show-claim-detail/{id}',[ClaimsController::class,'show'])->name('show-claim-detail');
     //get assign to user 
     Route::get('ajax_assign_to/{type}',[ClaimsController::class,'get_assign_to_users'])->name('ajax_assign_to');
 
@@ -154,6 +155,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-representative/{id}',[RepresentativeController::class,'edit'])->name('update-representative');
     Route::put('edit-representative/{id}',[RepresentativeController::class,'update'])->name('edit-representative');
     Route::delete('delete-representative/{id}',[RepresentativeController::class,'destroy'])->name('delete-representative');
+    Route::get('ajax-representative-dropdown/{id}',[RepresentativeController::class,'GetRepresentativeByInsurerId'])->name('ajax-representative-dropdown');
 });
 
 Auth::routes();
