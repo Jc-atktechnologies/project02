@@ -37,15 +37,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript: void(0);">
+                    <a href="{{route('claims-list')}}">
                         <i class="fe-file"></i>
                          <span>Claims</span>
-                         <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
+                    <!-- <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{route('create-claims')}}">Create claim</a></li>
                         <li><a href="{{route('claims-list')}}">Search</a></li>
-                    </ul>
+                    </ul> -->
                 </li>
                 <li>
                     <a href="javascript: void(0);">

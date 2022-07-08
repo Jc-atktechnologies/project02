@@ -67,3 +67,14 @@ body{
     border-color: #64c5b1;
     color: white;
 }
+
+/* Claim section css */
+.remove-td-border{
+    border-bottom-width: 0px !important;
+    border: 0px white !important;
+}
+
+.td-search-border{
+    border-bottom-width: 1px !important;
+    background-color: rgba(100, 197, 177, .1);
+}

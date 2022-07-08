@@ -20,16 +20,35 @@
     {{-- Table Content --}}
     <div class="row">
         <div class="col-12">
+        @include('flash::message')
             <div class="card-box table-responsive">
-            @include('flash::message')
+                <div class="alert-primary alert">Claim's List</div>
                 <table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <td colspan="6">ADD SEARCH BAR</td>
-                            <td colspan="1">ADD CLAIM BUTTON</td>
+                            <td class="td-search-border" colspan="7">
+                                <div class="float-left">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <div class="form-group">
+                                                <input type="text"class="form-control" placeholder="serach claim" name="claim_number" id="claim_number">
+                                            </div>
+                                        </div>
+                                        <div class="col-1">
+                                            <div class="form-group" style="margin-top: 3px">
+                                                <input type="button" class="btn btn-sm btn-info" name="btn-filter" id="btn-filter" value="Filter">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="float-right">
+                                    <a href="{{route('create-claims')}}" class="btn btn-sm btn-info ">Add New Claim</a>
+                                </div>    
+                            </td>
+                            
                         </tr>
                         <tr>
-                            <td colspan="7"></td>
+                            <td class="remove-td-border" colspan="7"></td>
                         </tr>
                     <tr>
                         <th>Insured</th>
