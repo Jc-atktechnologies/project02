@@ -14,6 +14,7 @@ use App\Http\Requests\ClaimsRequest;
 use App\Models\ClaimAssignmentInfromation;
 use App\Models\ClaimInsuredDetail;
 use App\Models\ClaimLossDetail;
+use App\Models\Representative;
 
 class ClaimsController extends Controller
 {
@@ -159,16 +160,25 @@ class ClaimsController extends Controller
      */
     public function edit($id)
     {
-        //
         try {
             if (empty($id)){
-                flash(trans('url_change_error'))->error();
+                flash(trans('general_messages.url_change_error'))->error();
                 return redirect()->back();
             }
-            $branch_data = Branch::where('id',$id)->first();
-            return view('claims.form',compact('claims_data'));
+            $detail = Claim::with('insurer','user','insured','lossdetail','assignmentmethod')->where('id','=',$id)->first();
+            $insurers = Insurer::get();
+            $claim_categories = ClaimCategory::get();
+            $loss_types = LossType::get();
+            $representatives = Representative::where('insurer_id',$detail->insurer_id)->get();
+            $assignment_methods = [
+                ['id'=>1,'title'=>'Direct Assign'],
+                ['id'=>2,'title'=>'Team Assign'],
+                ['id'=>3,'title'=>'Leave Unassigned']
+            ];
+            $share_users = User::get();
+            return view('claims.form',compact('claim_categories','loss_types','insurers','assignment_methods','representatives','share_users','detail'));
         } catch (\Exception $exception){
-            flash(trans('general_error'))->error();
+            flash(trans('general_messages.general_error'))->error();
             return redirect()->back();
         }
     }

@@ -95,7 +95,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('claims-list',[ClaimsController::class,'index'])->name('claims-list');
     Route::get('create-claims',[ClaimsController::class,'create'])->name('create-claims');
     Route::post('save-claims',[ClaimsController::class,'store'])->name('save-claims');
-    Route::get('update-claims/{claimnumber}',[ClaimsController::class,'edit'])->name('update-claims');
+    Route::get('update-claims/{id}',[ClaimsController::class,'edit'])->name('update-claims');
     Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
     Route::delete('delete-claims/{id}',[ClaimsController::class,'destroy'])->name('delete-claims');
     Route::get('show-claim-detail/{id}',[ClaimsController::class,'show'])->name('show-claim-detail');

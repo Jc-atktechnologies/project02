@@ -71,7 +71,7 @@
                             <td>{{ $claim->lossdetail->lossType->title}}</td>
                             <td> 
                                 <a href="javascript:void(0)" onclick=" return GetClaimDetail('{{ $claim->id}}')" title="Claim Detail" class="btn btn-success"><i class="fa fa-eye"></i> </a>
-                                <a href="javascript:void(0)" title="Edit Claim" class="btn btn-info"><i class="fa fa-edit"></i> </a>
+                                <a href="{{ route('update-claims',['id'=>$claim->id])}}" title="Edit Claim" class="btn btn-info"><i class="fa fa-edit"></i> </a>
                                 @include('general_partials.delete_partial',['delete_url'=>route('delete-claims',['id'=>$claim->id])])
                             </td>
                         </tr>

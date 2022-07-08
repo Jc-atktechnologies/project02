@@ -1,19 +1,34 @@
 @extends ('layouts.app')
 @php
     if (!empty($detail)){
-        $id             = $detail->id;
-        $insurer_id     = $detail->insurer_id;
-        $name           = $detail->name;
-        $title          = $detail->title;
-        $city           = $detail->city;
-        $phone          = $detail->phone;
-        $cell           = $detail->cell;
-        $email          = $detail->email;
-        $is_active      = $detail->is_active;
-        $notes          = $detail->notes;
+        $id                 = $detail->id;
+        $insurer_id         = $detail->insurer_id;
+        $claim_number       = $detail->claim_number;
+        $representative_id  = $detail->representative_id;
+        $policy_number      = $detail->policy_number;
+        $insured            = $detail->insured->name;
+        $state              = $detail->insured->state;
+        $address            = $detail->insured->address;
+        $country            = $detail->insured->country;
+        $city               = $detail->insured->city;
+        $zip_code           = $detail->insured->postal_code;
+        $email              = $detail->insured->email;
+        $phone              = $detail->insured->phone;
+        $cell               = $detail->insured->cell;
+        $date_of_loss       = $detail->lossdetail->loss_date;
+        $time_of_loss       = $detail->lossdetail->loss_time;
+        $loss_type          = $detail->lossdetail->loss_type_id;
+        $reported_date      = $detail->lossdetail->reported_date;
+        $loss_location      = $detail->lossdetail->loss_location;
+        $loss_description   = $detail->lossdetail->loss_description;
+        $loss_country       = $detail->lossdetail->country;
+        $additional_notes   = $detail->lossdetail->additional_notes;
+        $claim_category     = $detail->assignmentmethod->calim_ctegory_id;
+        $assignmentmethod   = $detail->assingment_method;
+        $share_with         = $detail->assignmentmethod->share_with;
         $put_input      = '<input type="hidden" name="_method" value="PUT">';
         $heading        = "Update Claim";
-        $route          = route('edit-',['id'=>$id]);
+        $route          = route('edit-claims',['id'=>$id]);
     } else{
         $id                 = '';
         $insurer_id         = '';
@@ -90,7 +105,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Policy Number</label>
-                                <input type="text"class="form-control" name="policy_number" id="policy_number">
+                                <input type="text"class="form-control" name="policy_number" id="policy_number" value="@if(old('policy_number')){{old('policy_number')}}@else{{$policy_number}}@endif">
                             </div>
                         </div>
                     </div>
@@ -102,7 +117,10 @@
                             <div class="form-group">
                                 <label>Inside Rep : <span class="text-danger">*</span></label>
                                 <select name="representative_id" id="representative_id" required class="form-control">
-                                    <option value="">Please Select</option>
+                                    <option value="">Select Representative</option>
+                                    @foreach($representatives as $representative)
+                                        <option value="{{$representative->id}}" @if($representative->id == $detail->representative_id) selected @endif>{{ $representative->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -111,7 +129,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Insurer Claim Number</label>
-                                <input type="text"class="form-control" value="@if(old('claim_number')){{old('claim_number')}}@else{{$claim_number}}@endif" readonly name="claim_number" id="claim_number">
+                                <input type="text"class="form-control" value="@if(old('claim_number')){{old('claim_number')}}@else{{$claim_number}}@endif"  name="claim_number" id="claim_number">
                             </div>
                         </div>
                         <!-- col-6 end -->
@@ -325,7 +343,7 @@
                                 <select name="assignment_method" id="assignment_method" class="form-control" onchange=" return ToggleAssignTo(this.value)">
                                     <option value=""> Please Select</option>
                                     @foreach($assignment_methods as $assignment_method)
-                                    <option value="{{$assignment_method['id']}}" @if($assignmentmethod && $assignmentmethod==$assignment_method['id']) selected @endif>{{ $assignment_method['title'] }}</option>
+                                    <option value="{{$assignment_method['id']}}" @if($assignmentmethod && $assignmentmethod==$assignment_method['title']) selected @endif>{{ $assignment_method['title'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -336,8 +354,23 @@
                     <!-- row start -->
                     <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6" style="display: none;" id="assign">
-                            
+                        @if($assignmentmethod && $assignmentmethod=='Direct Assign' || $assignmentmethod=='Team Assign') 
+                            @php $display ='block'; @endphp
+                        @else
+                        @php $display ='none'; @endphp
+                        @endif
+                        <div class="col-6" style="display: {{ $display }};" id="assign">
+                        @if($assignmentmethod && $assignmentmethod=='Direct Assign')
+                            <div class="form-group">
+                                <label>Assign To : <span class="text-danger">*</span></label>
+                                <select name="assign_to" id="assign_to" class="form-control">
+                                    <option value=""> Please Select</option>
+                                    @foreach($share_users as $user)
+                                        <option value="{{$user->id}}" @if($detail->assignmentmethod->assign_to==$user->id) selected @endif>{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @endif
                         </div>
                         <!-- col-6 end -->
                         <!-- col-6 start -->
