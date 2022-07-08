@@ -21,9 +21,9 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Settings</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Settings</a></li>
                         <li class="breadcrumb-item"><a href="javascript: void(0);">System Administration</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Custom list</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('custom-list') }}">Custom list</a></li>
                         <li class="breadcrumb-item active">{{$heading}}</li>
                     </ol>
                 </div>
