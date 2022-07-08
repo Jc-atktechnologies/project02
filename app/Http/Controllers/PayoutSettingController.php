@@ -6,6 +6,7 @@ use App\Http\Requests\userDetailRequest;
 use App\Models\PayoutSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class PayoutSettingController extends Controller
 {
@@ -52,7 +53,11 @@ class PayoutSettingController extends Controller
                 DB::commit();
                 $message = str_replace(':module','Payout',trans('general_messages.create_success_message'));
                 flash($message)->success();
-                return redirect()->to(route('team-membership'));
+                if (Route::currentRouteName() == 'update-payout'){
+                    return redirect()->to(route('change-attachments',['id'=>$request->user_id]));
+                } else{
+                    return redirect()->to(route('attachments'));
+                }
             } else{
                 DB::rollBack();
                 flash(trans('general_messages.general_error'));

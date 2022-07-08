@@ -1,5 +1,6 @@
-<form method="post" action="{{route('save-management-notes')}}">
+<form method="post" action="{{$route}}">
     @csrf
+    {!! $type !!}
     <input type="hidden" name="management_notes" value="1">
     <input type="hidden" name="user_id" value="{{$user_id}}">
     <div class="row">
@@ -18,15 +19,27 @@
         </div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">Save</button>
+            @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
         </div>
     </div>
 </form>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Created On</th>
             <th>Entered By</th>
             <th>Note</th>
+            <th>Urgent</th>
         </tr>
     </thead>
+    @if(!empty($management_notes))
+        <tbody>
+            @foreach($management_notes as $management)
+                <tr>
+                    <td>{{$management->userDetail->name}}</td>
+                    <td>{{$management->note}}</td>
+                    <td>@if($management->is_urgent == 1)<span class="badge badge-success p-2">Yes</span>@else<span class="badge badge-danger p-2">No</span>@endif</td>
+                </tr>
+            @endforeach
+        </tbody>
+    @endif
 </table>
