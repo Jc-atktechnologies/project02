@@ -107,7 +107,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('update-claims/{claimnumber}',[ClaimsController::class,'edit'])->name('update-claims');
     Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
     Route::delete('delete-claims',[ClaimsController::class,'destroy'])->name('delete-claims');
-    //get assign to user 
+    //get assign to user
     Route::get('ajax_assign_to/{type}',[ClaimsController::class,'get_assign_to_users'])->name('ajax_assign_to');
 
 
@@ -132,21 +132,7 @@ Route::group(['middleware'=>'auth'],function (){
      Route::put('edit-claim-category/{id}',[ClaimCategoryController::class,'update'])->name('edit-claim-category');
      Route::delete('delete-claim-category/{id}',[ClaimCategoryController::class,'destroy'])->name('delete-claim-category');
     /* settings route end */
-    /* for cities */
-    Route::get('cities-list',[CityController::class,'index'])->name('cities-list');
-    Route::get('create-city',[CityController::class,'create'])->name('create-city');
-    Route::post('save-city',[CityController::class,'store'])->name('save-city');
-    Route::get('update-city/{id}',[CityController::class,'edit'])->name('update-city');
-    Route::put('edit-city',[CityController::class,'update'])->name('edit-city');
-    Route::delete('delete-city/{id}',[CityController::class,'destroy'])->name('delete-city');
 
-    /* for provinces */
-    Route::get('provinces-list',[ProvinceController::class,'index'])->name('provinces-list');
-    Route::get('create-province',[ProvinceController::class,'create'])->name('create-province');
-    Route::post('save-province',[ProvinceController::class,'store'])->name('save-province');
-    Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
-    Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
-    Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
 });
 
 Auth::routes();
