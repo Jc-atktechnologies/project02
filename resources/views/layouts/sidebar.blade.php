@@ -89,28 +89,6 @@
                         <li><a href="{{route('create-branch')}}">Add Branch</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-sidebar"></i>
-                        <span>Cities</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="{{route('cities-list')}}">Cities List</a></li>
-                        <li><a href="{{route('create-city')}}">Add City</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-sidebar"></i>
-                        <span>Provinces</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="{{route('provinces-list')}}">Provinces List</a></li>
-                        <li><a href="{{route('create-province')}}">Add Province</a></li>
-                    </ul>
-                </li>
             </ul>
 
         </div>
