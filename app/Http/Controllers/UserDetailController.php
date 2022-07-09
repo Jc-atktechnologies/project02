@@ -184,6 +184,14 @@ class UserDetailController extends Controller
         $type    = '<input type="hidden" name="_method" value="PUT">';
         $payouts = $attachments = $management_notes = [];
         $next    = '';
+        $tabs_url = [
+            'general_details'   => \route('update-user',['id'=>$user_id]),
+            'preferences'       => \route('change-account-preference',['id'=>$user_id]),
+            'permissions'       => \route('change-user-permission',['id'=>$user_id]),
+            'payout'            => \route('change-payout-setting',['id'=>$user_id]),
+            'attachment'        => \route('change-attachments',['id'=>$user_id]),
+            'notes'             => \route('change-management-notes',['id'=>$user_id])
+        ];
         switch ($url){
             case "change-account-preference":
                 $heading = 'Account Preference';
@@ -240,7 +248,7 @@ class UserDetailController extends Controller
         }
 
         $branches = Branch::where('status','=',1)->get();
-         return view('user.form',compact('user_details','branches','heading','tab','route','type','user_id','payouts','management_notes','attachments','next'));
+         return view('user.form',compact('user_details','branches','heading','tab','route','type','user_id','payouts','management_notes','attachments','next','tabs_url'));
     }
 
     /**
