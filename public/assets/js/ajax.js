@@ -1,43 +1,89 @@
-// $(document).ready(function () {
-//     google.maps.event.addEventListener(window, 'load', initialize);
-//  });
-//  function initialize() {
-//     const input = document.getElementById("loss_location");
-
-// const autocomplete = new google.maps.places.Autocomplete(input, options);
+// function for addres and prefill data for insurer
+function initialize() {
    
-// }
-
-google.maps.event.addDomListener(window, 'load', function() {
-    var places = new google.maps.places.Autocomplete(document
-            .getElementById('loss_location'));
-    google.maps.event.addListener(places, 'place_changed', function() {
-        var place = places.getPlace();
-        var address = place.formatted_address;
-        var  value = address.split(",");
-        console.log(value);
-        // count=value.length;
-        // country=value[count-1];
-        // state=value[count-2];
-        // city=value[count-3];
-        // var z=state.split(" ");
-        // document.getElementById("selCountry").text = country;
-        // var i =z.length;
-        // document.getElementById("pstate").value = z[1];
-        // if(i>2)
-        // document.getElementById("pzcode").value = z[2];
-        // document.getElementById("pCity").value = city;
-        // var latitude = place.geometry.location.lat();
-        // var longitude = place.geometry.location.lng();
-        // var mesg = address;
-        // document.getElementById("txtPlaces").value = mesg;
-        // var lati = latitude;
-        // document.getElementById("plati").value = lati;
-        // var longi = longitude;
-        // document.getElementById("plongi").value = longi;            
+    var input = document.getElementById('address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        let check_postal_code =0;
+        for (var i = 0; i < place.address_components.length; i++) {
+            for (var j = 0; j < place.address_components[i].types.length; j++) {
+                if (place.address_components[i].types[j] == "postal_code") {
+                    check_postal_code=1;
+                    document.getElementById('zipcode').value = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j]=='country'){
+                    document.getElementById('country').value=place.address_components[i].long_name
+                }
+                if(place.address_components[i].types[j]=='locality' || place.address_components[i].types[j]=='administrative_area_level_3')
+                {
+                    document.getElementById('city').value = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j]=='administrative_area_level_1')
+                {
+                    document.getElementById('state').value = place.address_components[i].long_name;
+                }
+               
+            }
+          }
+          if(check_postal_code==0){
+            document.getElementById('zipcode').value='';
+          }
     });
-});
+   
+  }
+// js related to claim
+function GetInsuredAddress(){
+    var input = document.getElementById('address');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        let check_postal_code =0;
+        for (var i = 0; i < place.address_components.length; i++) {
+            for (var j = 0; j < place.address_components[i].types.length; j++) {
+                if (place.address_components[i].types[j] == "postal_code") {
+                    check_postal_code=1;
+                    document.getElementById('zip_code').value = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j]=='country'){
+                    document.getElementById('country').value=place.address_components[i].long_name
+                }
+                if(place.address_components[i].types[j]=='locality' || place.address_components[i].types[j]=='administrative_area_level_3')
+                {
+                    document.getElementById('city').value = place.address_components[i].long_name;
+                }
+                if(place.address_components[i].types[j]=='administrative_area_level_1')
+                {
+                    document.getElementById('state').value = place.address_components[i].long_name;
+                }
+               
+            }
+          }
+          if(check_postal_code==0){
+            document.getElementById('zipcode').value='';
+          }
+    });
+}
+google.maps.event.addDomListener(window, 'load', GetInsuredAddress);
 
+function GetLossLocation(){
+    var input = document.getElementById('loss_location');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        for (var i = 0; i < place.address_components.length; i++) {
+            for (var j = 0; j < place.address_components[i].types.length; j++) {
+               
+                if(place.address_components[i].types[j]=='country'){
+                    document.getElementById('loss_country').value=place.address_components[i].long_name
+                }
+            }
+          }
+    });
+}
+
+google.maps.event.addDomListener(window,'load',GetLossLocation);
+//   claim assign method related functionality
 function ToggleAssignTo(val)
 {
     let target_area = document.getElementById('assign');
@@ -56,6 +102,64 @@ function ToggleAssignTo(val)
         },
         error: function (data) {
             console.log('Error:', data);
+        }
+    });
+}
+
+
+
+
+// get Insurer Detail and show on modal 
+function GetInsurerDetail(id)
+    {
+        $.ajax({
+                type: "GET",
+                url: '/insurer-detail/'+id,
+                success: function (response) {
+                    document.getElementById('output').innerHTML= response.view;
+                    $('#OpenInsureDetail').modal('show');
+                },
+               error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+                
+    }
+
+// get insurer representative dropdown
+
+function GetInsurerRepresentative(id)
+{
+    $.ajax({
+        type:"GET",
+        url:'/ajax-representative-dropdown/'+id,
+        success: function(response){
+            document.getElementById('representative_id').innerHTML=response.view;
+        },
+        error:function(error_data) {
+            console.log(error_data);
+        }
+    });
+}
+
+// get claim detail information in modal
+
+function GetClaimDetail(id)
+{
+    if(!id || id==0)
+    {
+        return alert('please select a claim first');
+    }
+    $.ajax({
+        type:"GET",
+        url:'/show-claim-detail/'+id,
+        success: function(response){
+            console.log(response.view);
+            document.getElementById('output').innerHTML=response.view;
+            $('#OpenModel').modal('show');
+        },
+        error:function(error_data) {
+            console.log(error_data);
         }
     });
 }

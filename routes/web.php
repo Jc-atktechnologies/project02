@@ -11,7 +11,11 @@ use App\Http\Controllers\CustomListController;
 use App\Http\Controllers\LossTypeController;
 use App\Http\Controllers\PayoutSettingController;
 use App\Http\Controllers\AttachmentController;
+use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\ManagementNoteController;
+use App\Http\Controllers\RepresentativeController;
+use App\Models\Representative;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,9 +108,10 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('claims-list',[ClaimsController::class,'index'])->name('claims-list');
     Route::get('create-claims',[ClaimsController::class,'create'])->name('create-claims');
     Route::post('save-claims',[ClaimsController::class,'store'])->name('save-claims');
-    Route::get('update-claims/{claimnumber}',[ClaimsController::class,'edit'])->name('update-claims');
+    Route::get('update-claims/{id}',[ClaimsController::class,'edit'])->name('update-claims');
     Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
-    Route::delete('delete-claims',[ClaimsController::class,'destroy'])->name('delete-claims');
+    Route::delete('delete-claims/{id}',[ClaimsController::class,'destroy'])->name('delete-claims');
+    Route::get('show-claim-detail/{id}',[ClaimsController::class,'show'])->name('show-claim-detail');
     //get assign to user
     Route::get('ajax_assign_to/{type}',[ClaimsController::class,'get_assign_to_users'])->name('ajax_assign_to');
 
@@ -133,6 +138,30 @@ Route::group(['middleware'=>'auth'],function (){
      Route::delete('delete-claim-category/{id}',[ClaimCategoryController::class,'destroy'])->name('delete-claim-category');
     /* settings route end */
 
+    /* for provinces */
+    Route::get('provinces-list',[ProvinceController::class,'index'])->name('provinces-list');
+    Route::get('create-province',[ProvinceController::class,'create'])->name('create-province');
+    Route::post('save-province',[ProvinceController::class,'store'])->name('save-province');
+    Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
+    Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
+    Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
+
+    /* for insurers */
+    Route::get('insurer-list',[InsurerController::class,'index'])->name('insurer-list');
+    Route::get('create-insurer',[InsurerController::class,'create'])->name('create-insurer');
+    Route::post('save-insurer',[InsurerController::class,'store'])->name('save-insurer');
+    Route::get('update-insurer/{id}',[InsurerController::class,'edit'])->name('update-insurer');
+    Route::put('edit-insurer/{id}',[InsurerController::class,'update'])->name('edit-insurer');
+    Route::delete('delete-insurer/{id}',[InsurerController::class,'destroy'])->name('delete-insurer');
+    Route::get('insurer-detail/{id}',[InsurerController::class,'show'])->name('insurer-detail');
+    // for insurer's representative
+    Route::get('representative-list/{id?}',[RepresentativeController::class,'index'])->name('representative-list');
+    Route::get('create-representative/{id}',[RepresentativeController::class,'create'])->name('create-representative');
+    Route::post('save-representative',[RepresentativeController::class,'store'])->name('save-representative');
+    Route::get('update-representative/{id}',[RepresentativeController::class,'edit'])->name('update-representative');
+    Route::put('edit-representative/{id}',[RepresentativeController::class,'update'])->name('edit-representative');
+    Route::delete('delete-representative/{id}',[RepresentativeController::class,'destroy'])->name('delete-representative');
+    Route::get('ajax-representative-dropdown/{id}',[RepresentativeController::class,'GetRepresentativeByInsurerId'])->name('ajax-representative-dropdown');
 });
 
 Auth::routes();
