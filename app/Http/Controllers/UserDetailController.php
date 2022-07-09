@@ -227,7 +227,7 @@ class UserDetailController extends Controller
                 $heading = 'Attachments';
                 $tab     = 'attachments';
                 $route   = \route('update-attachment');
-                $next    = \route('change-management-notes',['id'=>$user_id]);
+                $next    = \route('change-attachments',['id'=>$user_id]);
                 $attachments = Attatchment::where('user_id','=',$user_id)->orderBy('id','DESC')->get();
                 $type    = '';
                 break;
@@ -235,7 +235,7 @@ class UserDetailController extends Controller
                 $heading = 'Management Notes';
                 $tab     = 'management_notes';
                 $route   = \route('update-management-notes');
-                $next    = \route('users-list');
+                $next    = \route('change-management-notes',['id'=>$user_id]);
                 $management_notes = ManagementNote::where('user_id','=',$user_id)->orderBy('id','DESC')->get();
                 $type    = '';
                 break;

@@ -53,7 +53,7 @@ class ManagementNoteController extends Controller
                 DB::commit();
                 $message = str_replace(':module','Management Note',trans('general_messages.create_success_message'));
                 flash($message)->success();
-                return redirect()->to(route('users-list'));
+                return redirect()->to(route('change-management-notes',['id'=>$user_id]));
             } else{
                 DB::rollBack();
                 flash(trans('general_messages.general_error'));
