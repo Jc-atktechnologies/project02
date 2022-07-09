@@ -117,8 +117,12 @@
                             <div class="form-group">
                                 <label>Inside Rep : <span class="text-danger">*</span></label>
                                 <select name="representative_id" id="representative_id" required class="form-control">
-                                    <option value="">Please Select</option>
-                                    
+                                    <option value="">Select Representative</option>
+                                    @if(isset($representatives))
+                                        @foreach($representatives as $representative)
+                                            <option value="{{$representative->id}}">{{ $representative->name}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

@@ -70,7 +70,7 @@ class InsurerController extends Controller
                 return redirect()->back();
             }
         } catch (\Exception $exception){
-            flash(trans('general_messages.delete_success_message'))->error();
+            flash($exception->getMessage())->error();
             return redirect()->back();
         }
     }
