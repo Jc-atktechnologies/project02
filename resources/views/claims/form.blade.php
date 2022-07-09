@@ -400,7 +400,7 @@
     </div>
 
 @push('customejs')
-<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNXNhr4HCbfCYEoo37DQ1TrAsL60VS63A&libraries=places">
 </script>
 <script src="{{asset('assets/js/ajax.js')}}"></script>
 @endpush

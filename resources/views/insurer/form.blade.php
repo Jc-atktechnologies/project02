@@ -278,7 +278,7 @@
 
 @push('customejs')
 <script async
-    src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNXNhr4HCbfCYEoo37DQ1TrAsL60VS63A&libraries=places&callback=initialize">
 </script>
 <script src="{{asset('assets/js/ajax.js')}}"></script>
 @endpush
