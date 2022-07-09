@@ -102,19 +102,19 @@
             <div class="form-group">
                 <label>Calendar viewable by</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="All Staff" id="flexCheckDefault" name="calendar_viewable_by[]" @if(old('calendar_view_by') == 'All Staff' || in_array('All Staff',$calendar_viewable_by)) checked @endif>
+                    <input class="form-check-input" type="checkbox" value="All Staff" id="flexCheckDefault" name="calendar_viewable_by[]" @if((old('calendar_viewable_by') && in_array('All Staff', old('calendar_viewable_by')))  || in_array('All Staff',$calendar_viewable_by)) checked @endif>
                     <label class="form-check-label" for="flexCheckDefault">
                         All Staff
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Claim Administrators" id="flexCheckChecked" name="calendar_viewable_by[]" @if(old('calendar_view_by') == 'Claim Administrators' || in_array('Claim Administrators',$calendar_viewable_by)) checked @endif>
+                    <input class="form-check-input" type="checkbox" value="Claim Administrators" id="flexCheckChecked" name="calendar_viewable_by[]" @if((old('calendar_view_by') && in_array('Claim Administrators',old('calendar_view_by'))) || in_array('Claim Administrators',$calendar_viewable_by)) checked @endif>
                     <label class="form-check-label" for="flexCheckChecked">
                         Claim Administrators
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="Branch Managers" id="flexCheckChecked" name="calendar_viewable_by[]" @if(old('calendar_view_by') == 'Branch Managers' || in_array('Branch Managers',$calendar_viewable_by)) checked @endif>
+                    <input class="form-check-input" type="checkbox" value="Branch Managers" id="flexCheckChecked" name="calendar_viewable_by[]" @if((old('calendar_view_by') && in_array('Branch Managers',old('calendar_view_by'))) || in_array('Branch Managers',$calendar_viewable_by)) checked @endif>
                     <label class="form-check-label" for="flexCheckChecked">
                         Branch Managers
                     </label>

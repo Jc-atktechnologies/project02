@@ -27,11 +27,9 @@ use App\Models\Representative;
 |
 */
 \Illuminate\Support\Facades\App::setLocale('en');
-Route::get('/', function () {
-    return view('auth.login');
-});
-Route::group(['middleware'=>'auth'],function (){
 
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('/');
     Route::get('dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');

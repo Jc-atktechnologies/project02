@@ -1,6 +1,6 @@
 // function for addres and prefill data for insurer
 function initialize() {
-   
+
     var input = document.getElementById('address');
     var autocomplete = new google.maps.places.Autocomplete(input);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -23,14 +23,14 @@ function initialize() {
                 {
                     document.getElementById('state').value = place.address_components[i].long_name;
                 }
-               
+
             }
           }
           if(check_postal_code==0){
             document.getElementById('zipcode').value='';
           }
     });
-   
+
   }
 // js related to claim
 function GetInsuredAddress(){
@@ -56,7 +56,7 @@ function GetInsuredAddress(){
                 {
                     document.getElementById('state').value = place.address_components[i].long_name;
                 }
-               
+
             }
           }
           if(check_postal_code==0){
@@ -73,7 +73,7 @@ function GetLossLocation(){
         var place = autocomplete.getPlace();
         for (var i = 0; i < place.address_components.length; i++) {
             for (var j = 0; j < place.address_components[i].types.length; j++) {
-               
+
                 if(place.address_components[i].types[j]=='country'){
                     document.getElementById('loss_country').value=place.address_components[i].long_name
                 }
@@ -109,7 +109,7 @@ function ToggleAssignTo(val)
 
 
 
-// get Insurer Detail and show on modal 
+// get Insurer Detail and show on modal
 function GetInsurerDetail(id)
     {
         $.ajax({
@@ -123,7 +123,7 @@ function GetInsurerDetail(id)
                     console.log('Error:', data);
                 }
             });
-                
+
     }
 
 // get insurer representative dropdown

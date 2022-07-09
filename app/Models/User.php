@@ -51,7 +51,6 @@ class User extends Authenticatable
         'title'         => 'required|min:2|max:15',
         'mobile_number' => 'required|min:10|max:15',
         'branch_id'     => 'required|integer',
-        'dob'           => 'required',
         'ssn'           => 'required',
         'preferred_for' => 'required',
     ];

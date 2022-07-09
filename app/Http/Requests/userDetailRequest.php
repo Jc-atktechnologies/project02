@@ -30,7 +30,7 @@ class userDetailRequest extends FormRequest
     public function rules()
     {
         if ($this->request->has('account_preference')){
-            if ($this->getMethod() == 'POST'){
+            if ($this->request->has('create_preference')){
                 $rules = UserDetail::account_preference_rules;
                 $rules['password'] = ['required','string',new isValidPassword()];
                 return $rules;
@@ -56,10 +56,12 @@ class userDetailRequest extends FormRequest
             if ($this->getMethod() == 'POST'){
                 $rules = User::user_rules;
                 $rules['email']     = "required|email|unique:users";
+                $rules['dob']       = ['required', 'date_format:Y-m-d', 'before:'.date('Y-m-d')];
                 return $rules;
             } else{
                 $rules = User::user_rules;
                 $rules['email'] = "required|email|unique:users,email,".request()->get('user_id');
+                $rules['dob']       = ['required', 'date_format:Y-m-d', 'before_or_equal:'.date('Y-m-d')];
                 return $rules;
             }
 

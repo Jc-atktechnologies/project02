@@ -24,7 +24,7 @@ class UserDetailController extends Controller
     public function index()
     {
         //
-        $users_list = User::where(['is_active'=>1])->orderBy('id','DESC')->get();
+        $users_list = User::orderBy('id','DESC')->get();
         return view('user.index',compact('users_list'));
     }
 
@@ -42,7 +42,7 @@ class UserDetailController extends Controller
             case "account-preference":
                 $heading = 'Account Preference';
                 $tab     = 'account_preference';
-                $type    = '<input type="hidden" name="_method" value="PUT">';
+                $type    = '<input type="hidden" name="_method" value="PUT"> <input type="hidden" name="create_preference" value="1">';
                 $route   = \route('save-account-preference');
                 break;
             case 'user-permission':
@@ -122,7 +122,12 @@ class UserDetailController extends Controller
                     'preferred_for' => json_encode($request->preferred_for),
                     'rating'        => $request->rating,
                     'languages'     => $request->language_spoken,
-                    'comments'      => $request->comments
+                    'comments'      => $request->comments,
+                    'address'       => $request->get('address',null),
+                    'city'          => $request->get('city',null),
+                    'state'         => $request->get('state',null),
+                    'country'       => $request->get('country',null),
+                    'zip_code'      => $request->get('zip_code',null)
                 ];
                 $save_user_details = UserDetail::insert($user_detail);
                 if ($save_user_details){
