@@ -138,14 +138,6 @@ Route::group(['middleware'=>'auth'],function (){
      Route::delete('delete-claim-category/{id}',[ClaimCategoryController::class,'destroy'])->name('delete-claim-category');
     /* settings route end */
 
-    /* for provinces */
-    Route::get('provinces-list',[ProvinceController::class,'index'])->name('provinces-list');
-    Route::get('create-province',[ProvinceController::class,'create'])->name('create-province');
-    Route::post('save-province',[ProvinceController::class,'store'])->name('save-province');
-    Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
-    Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
-    Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
-
     /* for insurers */
     Route::get('insurer-list',[InsurerController::class,'index'])->name('insurer-list');
     Route::get('create-insurer',[InsurerController::class,'create'])->name('create-insurer');

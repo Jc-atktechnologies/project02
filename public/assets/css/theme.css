@@ -78,3 +78,15 @@ body{
     border-bottom-width: 1px !important;
     background-color: rgba(100, 197, 177, .1);
 }
+
+#sidebar-menu>ul>li>a:active, #sidebar-menu>ul>li>a:focus, #sidebar-menu>ul>li>a:hover {
+    background-color: #64c5b1;
+}
+#sidebar-menu>ul>li>ul>li>a:active, #sidebar-menu>ul>li>ul>li>a:focus, #sidebar-menu>ul>li>ul>li>a:hover {
+    background-color: #64c5b1;
+    color: white;
+}
+#sidebar-menu>ul>li>ul>li>ul>li>a:active, #sidebar-menu>ul>li>ul>li>ul>li>a:focus, #sidebar-menu>ul>li>ul>li>ul>li>a:hover {
+    background-color: #64c5b1;
+    color: white;
+}

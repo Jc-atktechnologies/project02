@@ -68,7 +68,7 @@
                         <li><a href="{{route('create-user')}}">Add User</a></li>
                     </ul>
                 </li>
-                <li>
+                {{--<li>
                     <a>
                         <i class="fe-package"></i>
                          <span>Settings</span>
@@ -87,8 +87,36 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li>--}}
                 <li>
+                    <a href="javascript: void(0);">
+                        <i class="fe-package"></i>
+                        <span> Settings </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level nav" aria-expanded="false">
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false">System
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-third-level nav" aria-expanded="false">
+                                <li>
+                                    <a href="{{route('custom-list')}}">Custom List</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false">Branches
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-third-level nav" aria-expanded="false">
+                                <li><a href="{{route('branch-list')}}">Branches List</a></li>
+                                <li><a href="{{route('create-branch')}}">Add Branch</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                {{--<li>
                     <a href="javascript: void(0);">
                         <i class="fe-paperclip"></i>
                         <span>Branches</span>
@@ -98,7 +126,7 @@
                         <li><a href="{{route('branch-list')}}">Branches List</a></li>
                         <li><a href="{{route('create-branch')}}">Add Branch</a></li>
                     </ul>
-                </li>
+                </li>--}}
             </ul>
 
         </div>
