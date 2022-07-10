@@ -55,4 +55,16 @@ class Claim extends Model
 
         return $this->hasOne(ClaimAssignmentInfromation::class);
     }
+
+    public static function GetPreviousAutoClaimNumber(){
+
+        $last_number = Claim::latest()->first();
+        if($last_number==''){
+            $claim = '';
+
+        }else{
+            $claim = $last_number->auto_claim_number;
+        }
+        return $claim;
+    }
 }

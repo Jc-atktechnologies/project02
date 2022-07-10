@@ -25,7 +25,7 @@ class ClaimsController extends Controller
      */
     public function index()
     {
-        //
+        
         $claim_data = Claim::with('insurer','insured','lossdetail')->get();
         return view('claims.index',compact('claim_data'));
     }
@@ -71,6 +71,7 @@ class ClaimsController extends Controller
                 'insurer_id'           => $request->insurer_id,
                 'representative_id'    => $request->representative_id,
                 'assingment_method'    => $request->assignment_method,
+                'auto_claim_number'    => $request->auto_claim_number,
             ];
             $store_data = Claim::create($claims_data);
             // adding insured detail in claim_insured_details table
@@ -271,5 +272,42 @@ class ClaimsController extends Controller
         return response()->json(['form_field'=>$view,'status'=>$status]);
     }
 
-    
+    public function auto_claimnumber($address){
+        $last_claim = Claim::GetPreviousAutoClaimNumber();
+        $number = $this->create_auto_claim_number($address,$last_claim);
+        return response()->json(['claim_number'=>$number]);
+    }
+
+    public function create_auto_claim_number($address,$last_number){
+        $result = strtoupper(substr($address, 0, 2));
+        $claim_number = '';
+        if($last_number==''){
+            $claim_number = date('Y').$result.'000001';
+        }else{
+            $getLastYear = substr($last_number,0,4);
+            if($getLastYear!=date('Y')){
+
+                $claim_number = date('Y').$result.'000001';
+            }else{
+                $auto_count = substr($last_number,6,12);
+                if($auto_count < 10 ){
+                    $added = '00000'.$auto_count +1;
+                }elseif($auto_count > 9  && $auto_count < 100){
+                    $added = '0000'.$auto_count +1;
+                }elseif($auto_count > 99  &&  $auto_count < 1000){
+                    $added = '000'.$auto_count +1;
+                }elseif($auto_count > 999  &&  $auto_count < 10000){
+                    $added = '00'.$auto_count +1;
+                }elseif($auto_count > 9999  &&  $auto_count < 100000){
+                    $added = '0'.$auto_count +1;
+                }elseif( $auto_count > 99999){
+                    $added = $auto_count +1;
+                }
+                $claim_number = date('Y').$result.$added;
+            }
+            
+        }
+       return  $claim_number;
+
+    }
 }
