@@ -24,7 +24,7 @@ class UserDetailController extends Controller
     public function index()
     {
         //
-        $users_list = User::where(['is_active'=>1])->orderBy('id','DESC')->get();
+        $users_list = User::orderBy('id','DESC')->get();
         return view('user.index',compact('users_list'));
     }
 
@@ -42,7 +42,7 @@ class UserDetailController extends Controller
             case "account-preference":
                 $heading = 'Account Preference';
                 $tab     = 'account_preference';
-                $type    = '<input type="hidden" name="_method" value="PUT">';
+                $type    = '<input type="hidden" name="_method" value="PUT"> <input type="hidden" name="create_preference" value="1">';
                 $route   = \route('save-account-preference');
                 break;
             case 'user-permission':
@@ -122,7 +122,12 @@ class UserDetailController extends Controller
                     'preferred_for' => json_encode($request->preferred_for),
                     'rating'        => $request->rating,
                     'languages'     => $request->language_spoken,
-                    'comments'      => $request->comments
+                    'comments'      => $request->comments,
+                    'address'       => $request->get('address',null),
+                    'city'          => $request->get('city',null),
+                    'state'         => $request->get('state',null),
+                    'country'       => $request->get('country',null),
+                    'zip_code'      => $request->get('zip_code',null)
                 ];
                 $save_user_details = UserDetail::insert($user_detail);
                 if ($save_user_details){
@@ -179,6 +184,14 @@ class UserDetailController extends Controller
         $type    = '<input type="hidden" name="_method" value="PUT">';
         $payouts = $attachments = $management_notes = [];
         $next    = '';
+        $tabs_url = [
+            'general_details'   => \route('update-user',['id'=>$user_id]),
+            'preferences'       => \route('change-account-preference',['id'=>$user_id]),
+            'permissions'       => \route('change-user-permission',['id'=>$user_id]),
+            'payout'            => \route('change-payout-setting',['id'=>$user_id]),
+            'attachment'        => \route('change-attachments',['id'=>$user_id]),
+            'notes'             => \route('change-management-notes',['id'=>$user_id])
+        ];
         switch ($url){
             case "change-account-preference":
                 $heading = 'Account Preference';
@@ -214,7 +227,7 @@ class UserDetailController extends Controller
                 $heading = 'Attachments';
                 $tab     = 'attachments';
                 $route   = \route('update-attachment');
-                $next    = \route('change-management-notes',['id'=>$user_id]);
+                $next    = \route('change-attachments',['id'=>$user_id]);
                 $attachments = Attatchment::where('user_id','=',$user_id)->orderBy('id','DESC')->get();
                 $type    = '';
                 break;
@@ -222,7 +235,7 @@ class UserDetailController extends Controller
                 $heading = 'Management Notes';
                 $tab     = 'management_notes';
                 $route   = \route('update-management-notes');
-                $next    = \route('users-list');
+                $next    = \route('change-management-notes',['id'=>$user_id]);
                 $management_notes = ManagementNote::where('user_id','=',$user_id)->orderBy('id','DESC')->get();
                 $type    = '';
                 break;
@@ -235,7 +248,7 @@ class UserDetailController extends Controller
         }
 
         $branches = Branch::where('status','=',1)->get();
-         return view('user.form',compact('user_details','branches','heading','tab','route','type','user_id','payouts','management_notes','attachments','next'));
+         return view('user.form',compact('user_details','branches','heading','tab','route','type','user_id','payouts','management_notes','attachments','next','tabs_url'));
     }
 
     /**

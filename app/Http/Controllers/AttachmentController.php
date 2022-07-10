@@ -64,11 +64,7 @@ class AttachmentController extends Controller
                 $message = str_replace(':module','Attachment',trans('general_messages.create_success_message'));
                 flash($message)->success();
                 DB::commit();
-                if (Route::currentRouteName() == 'update-attachment'){
-                    return redirect()->to(route('change-management-notes',['id'=>$user_id]));
-                } else{
-                    return redirect()->to(route('management-notes'));
-                }
+                return redirect()->to(route('change-attachments',['id'=>$user_id]));
             } else{
                 DB::rollBack();
                 flash(trans('general_messages.general_error'));

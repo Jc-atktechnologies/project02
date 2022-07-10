@@ -122,22 +122,22 @@
                 @enderror
             </div>
         </div>
-        {{--<div class="col-md-6">
+        <div class="col-md-6">
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" name="address" id="address-input" class="form-control" value="@if(old('address')){{old('address')}}@else{{$address}}@endif">
+                <input type="text" name="address" id="address" class="form-control" value="@if(old('address')){{old('address')}}@else{{$address}}@endif">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>City</label>
-                <input type="text" name="city" id="address-latitude" class="form-control" value="@if(old('city')){{old('city')}}@else{{$city}}@endif" readonly>
+                <input type="text" name="city" id="city" class="form-control" value="@if(old('city')){{old('city')}}@else{{$city}}@endif" readonly>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label>Prov/State</label>
-                <input type="text" name="state" id="address-longitude" class="form-control" value="@if(old('state')){{old('state')}}@else{{$state}}@endif" readonly>
+                <input type="text" name="state" id="state" class="form-control" value="@if(old('state')){{old('state')}}@else{{$state}}@endif" readonly>
             </div>
         </div>
         <div class="col-md-6">
@@ -149,14 +149,9 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Postal/Zip</label>
-                <input type="text" name="zip_code" id="zip_code" class="form-control" value="@if(old('zip_code')){{old('zip_code')}}@else{{$zip_code}}@endif">
+                <input type="text" name="zip_code" id="zipcode" class="form-control" value="@if(old('zip_code')){{old('zip_code')}}@else{{$zip_code}}@endif">
             </div>
         </div>
-        <div class="col-md-12">
-            <div id="address-map-container" style="width:100%;height:400px; ">
-                <div style="width: 100%; height: 100%" id="address-map"></div>
-            </div>
-        </div>--}}
         <div class="alert-primary alert col-md-12">Other Information</div>
         <div class="col-md-6">
             <div class="form-group">
@@ -185,17 +180,22 @@
                 <label class="label">Preferred For</label>
                 <br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Daily Work" name="preferred_for[]" @if(old('preferred_for') == 'Daily Work' || in_array('Daily Work',$preferred_for)) checked @endif>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Daily Work" name="preferred_for[]" @if((old('preferred_for') && in_array('Daily Work',old('preferred_for'))) || in_array('Daily Work',$preferred_for)) checked @endif>
                     <label class="form-check-label" for="inlineCheckbox1">Daily Work</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Cat Work" name="preferred_for[]" @if(old('preferred_for') == 'Cat Work' || in_array('Cat Work',$preferred_for)) checked @endif>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Cat Work" name="preferred_for[]" @if((old('preferred_for') && in_array('Cat Work',old('preferred_for'))) || in_array('Cat Work',$preferred_for)) checked @endif>
                     <label class="form-check-label" for="inlineCheckbox2">Cat Work</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Other" name="preferred_for[]" @if(old('preferred_for') == 'Other' || in_array('Other',$preferred_for)) checked @endif>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Other" name="preferred_for[]" @if((old('preferred_for') && in_array('Other',old('preferred_for'))) || in_array('Other',$preferred_for)) checked @endif>
                     <label class="form-check-label" for="inlineCheckbox3">Other</label>
                 </div>
+                @error('preferred_for')
+                <ul class="parsley-errors-list filled" id="parsley-id-7">
+                    <li class="parsley-required">{{ $message }}</li>
+                </ul>
+                @enderror
             </div>
         </div>
         <div class="col-md-6">
@@ -238,3 +238,9 @@
         @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
     </div>
 </form>
+@push('customejs')
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize">
+    </script>
+    <script src="{{asset('assets/js/ajax.js')}}"></script>
+@endpush

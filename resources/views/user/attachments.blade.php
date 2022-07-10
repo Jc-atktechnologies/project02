@@ -24,7 +24,7 @@
                 @enderror
             </div>
             <div class="col-md-4 mt-3">
-                <button type="submit" class="btn btn-success">Add Payout</button>
+                <button type="submit" class="btn btn-success">Add Attachment</button>
                 @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
             </div>
         </div>

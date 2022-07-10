@@ -47,7 +47,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">{{str_replace(':module','User',trans('general_messages.no_record_found'))}}</td>
+                            <td colspan="6">{{str_replace(':module','User',trans('general_messages.no_record_found'))}}</td>
                         </tr>
                     @endforelse
                     </tbody>

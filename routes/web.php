@@ -27,11 +27,9 @@ use App\Models\Representative;
 |
 */
 \Illuminate\Support\Facades\App::setLocale('en');
-Route::get('/', function () {
-    return view('auth.login');
-});
-Route::group(['middleware'=>'auth'],function (){
 
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('/',[App\Http\Controllers\HomeController::class, 'index'])->name('/');
     Route::get('dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
@@ -112,9 +110,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
     Route::delete('delete-claims/{id}',[ClaimsController::class,'destroy'])->name('delete-claims');
     Route::get('show-claim-detail/{id}',[ClaimsController::class,'show'])->name('show-claim-detail');
-    // param : branch id
-    Route::get('get-auto-claimnumber/{id}',[ClaimsController::class,'auto_claimnumber'])->name('get-auto-claimnumber');
-    //get assign to user 
+    //get assign to user
     Route::get('ajax_assign_to/{type}',[ClaimsController::class,'get_assign_to_users'])->name('ajax_assign_to');
 
 
@@ -139,21 +135,6 @@ Route::group(['middleware'=>'auth'],function (){
      Route::put('edit-claim-category/{id}',[ClaimCategoryController::class,'update'])->name('edit-claim-category');
      Route::delete('delete-claim-category/{id}',[ClaimCategoryController::class,'destroy'])->name('delete-claim-category');
     /* settings route end */
-    /* for cities */
-    Route::get('cities-list',[CityController::class,'index'])->name('cities-list');
-    Route::get('create-city',[CityController::class,'create'])->name('create-city');
-    Route::post('save-city',[CityController::class,'store'])->name('save-city');
-    Route::get('update-city/{id}',[CityController::class,'edit'])->name('update-city');
-    Route::put('edit-city',[CityController::class,'update'])->name('edit-city');
-    Route::delete('delete-city/{id}',[CityController::class,'destroy'])->name('delete-city');
-
-    /* for provinces */
-    Route::get('provinces-list',[ProvinceController::class,'index'])->name('provinces-list');
-    Route::get('create-province',[ProvinceController::class,'create'])->name('create-province');
-    Route::post('save-province',[ProvinceController::class,'store'])->name('save-province');
-    Route::get('update-province/{id}',[ProvinceController::class,'edit'])->name('update-province');
-    Route::put('edit-province',[ProvinceController::class,'update'])->name('edit-province');
-    Route::delete('delete-province/{id}',[ProvinceController::class,'destroy'])->name('delete-province');
 
     /* for insurers */
     Route::get('insurer-list',[InsurerController::class,'index'])->name('insurer-list');
@@ -163,7 +144,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::put('edit-insurer/{id}',[InsurerController::class,'update'])->name('edit-insurer');
     Route::delete('delete-insurer/{id}',[InsurerController::class,'destroy'])->name('delete-insurer');
     Route::get('insurer-detail/{id}',[InsurerController::class,'show'])->name('insurer-detail');
-    // for insurer's representative 
+    // for insurer's representative
     Route::get('representative-list/{id?}',[RepresentativeController::class,'index'])->name('representative-list');
     Route::get('create-representative/{id}',[RepresentativeController::class,'create'])->name('create-representative');
     Route::post('save-representative',[RepresentativeController::class,'store'])->name('save-representative');
