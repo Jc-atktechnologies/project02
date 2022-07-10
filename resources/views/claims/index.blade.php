@@ -31,7 +31,7 @@
                                     <div class="row">
                                         <div class="col-11">
                                             <div class="form-group">
-                                                <input type="text"class="form-control" placeholder="serach claim" name="claim_number" id="claim_number">
+                                                <input type="text"class="form-control" placeholder="search claim" name="claim_number" id="claim_number">
                                             </div>
                                         </div>
                                         <div class="col-1">
