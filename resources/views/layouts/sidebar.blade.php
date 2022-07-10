@@ -41,10 +41,6 @@
                         <i class="fe-file"></i>
                          <span>Claims</span>
                     </a>
-                    <!-- <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="{{route('create-claims')}}">Create claim</a></li>
-                        <li><a href="{{route('claims-list')}}">Search</a></li>
-                    </ul> -->
                 </li>
                 <li>
                     <a href="javascript: void(0);">
@@ -55,17 +51,6 @@
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="{{route('create-insurer')}}">Create Insurer</a></li>
                         <li><a href="{{route('insurer-list')}}">Insurer List</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-users"></i>
-                        <span>Users Management</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="{{route('users-list')}}">User List</a></li>
-                        <li><a href="{{route('create-user')}}">Add User</a></li>
                     </ul>
                 </li>
                 {{--<li>
@@ -106,12 +91,12 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript: void(0);" aria-expanded="false">Branches
+                            <a href="javascript: void(0);" aria-expanded="false">Company
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-third-level nav" aria-expanded="false">
-                                <li><a href="{{route('branch-list')}}">Branches List</a></li>
-                                <li><a href="{{route('create-branch')}}">Add Branch</a></li>
+                                <li><a href="{{route('users-list')}}">Users</a></li>
+                                <li><a href="{{route('branch-list')}}">Branches</a></li>
                             </ul>
                         </li>
                     </ul>
