@@ -163,3 +163,20 @@ function GetClaimDetail(id)
         }
     });
 }
+
+function GetAutoClaimNumber()
+{
+    let address = document.getElementById('address').value;
+    $.ajax({
+        type:"GET",
+        url:'/get-auto-claimnumber/'+address,
+        success: function(response){
+            console.log(response);
+            document.getElementById('auto_claim_number').value=response.claim_number;
+            //$('#OpenModel').modal('show');
+        },
+        error:function(error_data) {
+            console.log(error_data);
+        }
+    });
+}

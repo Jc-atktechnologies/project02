@@ -26,6 +26,7 @@
         $claim_category     = $detail->assignmentmethod->calim_ctegory_id;
         $assignmentmethod   = $detail->assingment_method;
         $share_with         = $detail->assignmentmethod->share_with;
+        $auto_claim_number  = $detail->auto_claim_number;
         $put_input      = '<input type="hidden" name="_method" value="PUT">';
         $heading        = "Update Claim";
         $route          = route('edit-claims',['id'=>$id]);
@@ -55,6 +56,7 @@
         $claim_category     = '';
         $assignmentmethod   = '';
         $share_with         = '';
+        $auto_claim_number  = '';
         $put_input          = '';
         $heading            = "Add New Claim";
         $route              = route('save-claims');
@@ -117,8 +119,12 @@
                             <div class="form-group">
                                 <label>Inside Rep : <span class="text-danger">*</span></label>
                                 <select name="representative_id" id="representative_id" required class="form-control">
-                                    <option value="">Please Select</option>
-                                    
+                                    <option value="">Select Representative</option>
+                                    @if(isset($representatives))
+                                        @foreach($representatives as $representative)
+                                            <option value="{{$representative->id}}">{{ $representative->name}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -162,7 +168,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Address : <span class="text-danger">*</span></label>
-                                <textarea row="3" class="form-control" name="address" id="address">@if(old('address')){{old('address')}}@else{{$address}}@endif</textarea>
+                                <textarea row="3" class="form-control" name="address" id="address" onkeyup="return GetAutoClaimNumber()">@if(old('address')){{old('address')}}@else{{$address}}@endif</textarea>
                             </div>
                         </div>
                         <!-- col-12 end -->
@@ -257,7 +263,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Loss Type : <span class="text-danger">*</span></label>
-                                <select name="loss_type" id="loss_type" class="form-control">
+                                <select name="loss_type" id="loss_type" class="form-control" required>
                                     <option value=""> Please Select</option>
                                     @foreach($loss_types as $type)
                                     <option value="{{$type->id}}" @if($loss_type && $loss_type==$type->id) selected @endif>{{ $type->title }}</option>
@@ -384,6 +390,14 @@
                             </div>
                         </div>
                         <!-- col-6 end -->
+                        <!-- col-6 start -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Claim Number : </label>
+                                <input type="text"class="form-control" name="auto_claim_number" id="auto_claim_number" readonly value="@if(old('auto_claim_number')){{old('auto_claim_number')}}@else{{$auto_claim_number}}@endif">
+                            </div>
+                        </div>
+                        <!-- col-6 end -->
                     </div>
                     <!-- row end -->
                     <!-- Assignment information section end -->
@@ -396,7 +410,7 @@
     </div>
 
 @push('customejs')
-<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNXNhr4HCbfCYEoo37DQ1TrAsL60VS63A&libraries=places">
 </script>
 <script src="{{asset('assets/js/ajax.js')}}"></script>
 @endpush

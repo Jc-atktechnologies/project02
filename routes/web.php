@@ -112,6 +112,8 @@ Route::group(['middleware'=>'auth'],function (){
     Route::put('edit-claims',[ClaimsController::class,'update'])->name('edit-claims');
     Route::delete('delete-claims/{id}',[ClaimsController::class,'destroy'])->name('delete-claims');
     Route::get('show-claim-detail/{id}',[ClaimsController::class,'show'])->name('show-claim-detail');
+    // param : branch id
+    Route::get('get-auto-claimnumber/{id}',[ClaimsController::class,'auto_claimnumber'])->name('get-auto-claimnumber');
     //get assign to user 
     Route::get('ajax_assign_to/{type}',[ClaimsController::class,'get_assign_to_users'])->name('ajax_assign_to');
 
