@@ -9,13 +9,7 @@
             <ul class="metismenu" id="side-menu">
                 <li>
                     <a href="{{route('home')}}">
-                        <i class="fe-home"></i> <span>Accueil</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('dashboard')}}">
-                        <i class="fe-sidebar"></i>
-                         <span>Dashboard</span>
+                        <i class="fe-home"></i> <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
