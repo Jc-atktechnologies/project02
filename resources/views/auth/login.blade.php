@@ -1,6 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.v2..app')
 
 @section('content')
+<style>
+    .main-wrapper .page-wrapper{
+        margin-left : 0px !important;
+        width: calc(100%) !important;
+
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

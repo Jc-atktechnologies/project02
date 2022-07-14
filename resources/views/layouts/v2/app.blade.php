@@ -49,9 +49,13 @@ License: For each use you must have a valid license purchased only from above li
   <script src="{{ asset('assets/js/spinner.js') }}"></script>
 
   <div class="main-wrapper" id="app">
+    @if(Auth::user())
     @include('layouts.v2.sidebar')
+    @endif
     <div class="page-wrapper">
+    @if(Auth::user())
       @include('layouts.v2.header')
+    @endif
       <div class="page-content">
         @yield('content')
       </div>
