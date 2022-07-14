@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.v2.app')
 @php
     if (!empty($detail)){
         $id                 = $detail->id;
@@ -64,7 +64,21 @@
 @endphp
 @section('content')
 <!-- start page title -->
-<div class="row">
+
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('home')}}">{{ config('app.name', 'Laravel') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{route('claims-list')}}">Settings</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{$heading}}</li>
+  </ol>
+</nav>
+
+
+<div class="col-12 pb-2">
+    <h4 class="page-title">{{$heading}}</h4>
+</div>
+
+<!-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -77,11 +91,13 @@
                 <h4 class="page-title">{{$heading}}</h4>
             </div>
         </div>
-    </div>
+    </div> -->
+
     <!-- Page content started -->
     <div class="row">
         <div class="col-12">
-            <div class="card-box">
+          <div class="card">
+            <div class="card-body">
                 @include("flash::message")
                 <form action="{{ $route }}" method="post">
                     @csrf
@@ -93,11 +109,11 @@
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Isurer : <span class="text-danger">*</span></label>
+                                <label>Insurer : <span class="text-danger">*</span></label>
                                 <select name="insurer_id" id="insurer_id" class="form-control" required onchange="return GetInsurerRepresentative(this.value)">
                                     <option value="">Select Insurer</option>
                                     @foreach($insurers as $insurer)
-                                        <option value="{{$insurer->id}}" @if($insurer_id && $insurer_id==$insurer->id) selected @endif>{{ $insurer->company_name }}</option>
+                                        <option value="{{$insurer->id}}" @if($insurer_id && $insurer_id == $insurer->id) selected @endif>{{ $insurer->company_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -112,8 +128,9 @@
                         </div>
                     </div>
                     <!-- row end -->
+
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pt-3 pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -141,9 +158,9 @@
                     <!-- row end -->
                     <!-- insurer section end -->
                     <!-- Insured Section start -->
-                    <div class="alert-primary alert">Insured Detail</div>
+                    <div class="alert-primary alert" style="">Insured Detail</div>
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -163,7 +180,7 @@
                     </div>
                     <!-- row end -->
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-12 start -->
                         <div class="col-12">
                             <div class="form-group">
@@ -175,7 +192,7 @@
                     </div>
                     <!-- row end -->
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -215,7 +232,7 @@
                     </div>
                     <!-- row end -->
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pt-3 pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -238,7 +255,7 @@
                     <!-- Loss section start -->
                     <div class="alert-primary alert">Loss Detail</div>
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -258,7 +275,7 @@
                     </div>
                     <!-- row end -->
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -283,7 +300,7 @@
                     </div>
                     <!-- row end -->
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -303,7 +320,7 @@
                     </div>
                     <!-- row end -->
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-2">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -316,7 +333,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Additional Notes :</label>
-                                <textarea row="3" class="form-control" name="additional_notes" id="additional_notes">@if(old('additional_notes')){{old('additional_notes')}}@else{{$additional_notes}}@endif</textarea>
+                                <textarea rows="2" class="form-control" name="additional_notes" id="additional_notes">@if(old('additional_notes')){{old('additional_notes')}}@else{{$additional_notes}}@endif</textarea>
                             </div>
                         </div>
                         <!-- col-6 end -->
@@ -326,7 +343,7 @@
                     <!-- Assignment information section start -->
                     <div class="alert-primary alert">Assignment Information</div>
                      <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-6 start -->
                         <div class="col-6">
                             <div class="form-group">
@@ -356,7 +373,7 @@
                     </div>
                     <!-- row end -->
                     <!-- row start -->
-                    <div class="row">
+                    <div class="row pb-3">
                         <!-- col-6 start -->
                         @if($assignmentmethod && $assignmentmethod=='Direct Assign' || $assignmentmethod=='Team Assign') 
                             @php $display ='block'; @endphp
@@ -402,9 +419,10 @@
                     <!-- row end -->
                     <!-- Assignment information section end -->
                     <div class="d-flex flex-row justify-content-center">
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-primary me-2 ">Save</button>
                     </div>
                 </form>
+              </div>
             </div>
         </div>
     </div>

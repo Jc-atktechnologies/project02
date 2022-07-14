@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @php
     if (!empty($detail)){
         $id             = $detail->id;
@@ -14,6 +15,7 @@
         $route          = route('save-loss-type');
     }
 @endphp
+
 @section('content')
     <!-- start page title -->
     <div class="row">
