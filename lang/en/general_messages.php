@@ -1,6 +1,6 @@
 <?php
 return [
-    "create_success_message"    => "New :module record created successfully",
+    "create_success_message"    => ":module record saved successfully",
     "update_success_message"    => ":module record updated successfully",
     "delete_success_message"    => ":module record deleted successfully",
     "url_change_error"          => "Oops, URL not exist",

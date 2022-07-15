@@ -9,13 +9,7 @@
             <ul class="metismenu" id="side-menu">
                 <li>
                     <a href="{{route('home')}}">
-                        <i class="fe-home"></i> <span>Accueil</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('dashboard')}}">
-                        <i class="fe-sidebar"></i>
-                         <span>Dashboard</span>
+                        <i class="fe-home"></i> <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
@@ -31,64 +25,54 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('calendrier')}}">
+                    <a href="{{route('calendar')}}">
                         <i class="fe-calendar"></i>
                          <span>Calendar</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('dossiers')}}">
+                    <a href="{{route('claims-list')}}">
                         <i class="fe-file"></i>
                          <span>Claims</span>
                     </a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fe-file"></i>
+                         <span>Insurers</span>
+                         <span class="menu-arrow"></span>
+                    </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li><a>Create Claim</a></li>
-                        <li><a>Search Claim</a></li>
+                        <li><a href="{{route('create-insurer')}}">Create Insurer</a></li>
+                        <li><a href="{{route('insurer-list')}}">Insurer List</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('contacts')}}">
-                        <i class="fe-users"></i>
-                         <span>Contacts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{route('parametres')}}">
+                    <a href="javascript: void(0);">
                         <i class="fe-package"></i>
-                         <span>Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-paperclip"></i>
-                        <span>Branches</span>
+                        <span> Settings </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="{{route('branch-list')}}">Branches List</a></li>
-                        <li><a href="{{route('create-branch')}}">Add Branch</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-sidebar"></i>
-                        <span>Cities</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="{{route('cities-list')}}">Cities List</a></li>
-                        <li><a href="{{route('create-city')}}">Add City</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-sidebar"></i>
-                        <span>Provinces</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="{{route('provinces-list')}}">Provinces List</a></li>
-                        <li><a href="{{route('create-province')}}">Add Province</a></li>
+                    <ul class="nav-second-level nav" aria-expanded="false">
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false">System
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-third-level nav" aria-expanded="false">
+                                <li>
+                                    <a href="{{route('custom-list')}}">Custom List</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" aria-expanded="false">Company
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-third-level nav" aria-expanded="false">
+                                <li><a href="{{route('users-list')}}">Users</a></li>
+                                <li><a href="{{route('branch-list')}}">Branches</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             </ul>

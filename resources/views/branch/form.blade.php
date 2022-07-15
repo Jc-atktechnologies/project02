@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v2.app')
 @php
     if (!empty($branch_data)){
         $id    = $branch_data->id;
@@ -16,8 +16,11 @@
         $route = route('save-branch');
     }
 @endphp
+
 @section('content')
     <!-- start page title -->
+
+
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
@@ -32,6 +35,8 @@
         </div>
     </div>
     <!-- Page content started -->
+<div class="card">
+  <div class="card-body">
     <div class="row">
         <div class="col-12">
             <div class="card-box">
@@ -48,7 +53,7 @@
                         </ul>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    <div class="form-group pt-2">
                         <label>Status</label>
                         <select name="status" class="form-control">
                             <option>---Select Option---</option>
@@ -57,11 +62,13 @@
                         </select>
                     </div>
                     <input type="hidden" name="id" value="{{$id}}">
-                    <div class="d-flex flex-row justify-content-center">
-                        <button type="submit" class="btn btn-success">Save</button>
+                    <div class="d-flex flex-row justify-content-center pt-3">
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    </div>
+</div>
 @endsection

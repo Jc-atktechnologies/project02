@@ -120,9 +120,9 @@
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a class="dropdown-item notify-item" href="{{ route('logout') }}"--}}
+                <a class="dropdown-item notify-item" href="{{ route('logout') }}" }}
                    onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                                                document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
 

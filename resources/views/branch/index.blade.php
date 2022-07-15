@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v2.app')
 
 @section('content')
     {{-- Breadcrumb --}}
@@ -12,10 +12,15 @@
                         <li class="breadcrumb-item active">List</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Branches</h4>
+                <h4 class="page-title pb-2 pt-2">Branches</h4>
             </div>
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-body">
+
+        
     {{-- Table Content --}}
     <div class="row">
         <div class="col-12">
@@ -48,5 +53,8 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    </div>
     </div>
 @endsection

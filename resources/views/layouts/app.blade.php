@@ -26,8 +26,8 @@
 <div id="wrapper">
 
     @if(!empty(auth()->user()))
-        @include('layouts.sidebar')
-        @include('layouts.header')
+        @include('layouts.v2.sidebar')
+        @include('layouts.v2.header')
     @endif
 
     <div class="content-page">
@@ -36,7 +36,7 @@
             @yield('content')
 
         </div>
-        @include('layouts.footer')
+        @include('layouts.v2.footer')
 
     </div>
 
@@ -57,5 +57,6 @@
 <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
 <!-- App js -->
 <script src="{{asset('assets/js/app.min.js')}}"></script>
+@stack('customejs')
 </body>
 </html>

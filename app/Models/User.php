@@ -41,4 +41,35 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+    * validation rules for user details registration form
+     */
+    public const user_rules = [
+        'first_name'    => 'required|min:5|max:100',
+        'last_name'     => 'required|min:5|max:100',
+        'title'         => 'required|min:2|max:15',
+        'mobile_number' => 'required|min:10|max:15',
+        'branch_id'     => 'required|integer',
+        'ssn'           => 'required',
+        'preferred_for' => 'required',
+    ];
+    public const user_permission_rules = [
+        'user_id'   => 'required|integer',
+    ];
+    public const team_membership_rule = [
+        'user_id'   => 'required|integer',
+        'form_type' => 'required'
+    ];
+    public const skill_rule = [
+        'user_id'   => 'required|integer',
+        'form_type' => 'required'
+    ];
+
+    /**
+    * User Relations with other tables
+     */
+    public function userDetail(){
+        return $this->belongsTo(UserDetail::class,'id','user_id');
+    }
 }
