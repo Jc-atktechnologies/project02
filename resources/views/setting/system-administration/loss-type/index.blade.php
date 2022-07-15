@@ -1,8 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.v2.app')
 
 @section('content')
     {{-- Breadcrumb --}}
-    <div class="row">
+    <nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="javascript: void(0);">{{config('app.name','Laravel')}}</a></li>
+          <li class="breadcrumb-item"><a href="javascript: void(0);">Settings</a></li>
+          <li class="breadcrumb-item"><a href="javascript: void(0);">System Administration</a></li>
+          <li class="breadcrumb-item active" > <a href="{{route('custom-list') }}">Custom List</a></li>
+          <li class="breadcrumb-item active">list</li>
+        </ol>
+</nav>
+
+<div class="page-title-box pb-1">
+    <h4 class="page-title">Loss Types</h4>
+</div>
+
+    {{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -17,14 +31,19 @@
                 <h4 class="page-title">Loss Types</h4>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+<div class="card">
+    <div class="card-body">
+
+   
     {{-- Table Content --}}
     <div class="row">
         <div class="col-12">
             <div class="card-box table-responsive">
                 <h5 class="card-header bg-primary text-white"> Loss Type
-                    <div class="float-right ">
-                        <a href="{{ route('create-loss-type')}}" class="btn btn-sm btn-info "> Add Loss type</a>
+                    <div class="float-right pt-2">
+                        <a href="{{ route('create-loss-type')}}" class="btn btn-dark"> Add Loss type</a>
                     </div>
                 </h5>
                  @include('flash::message')
@@ -54,4 +73,6 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 @endsection

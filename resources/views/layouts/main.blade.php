@@ -14,7 +14,7 @@
     <body>
         <div id="container">
             <div id="nav-sidebar">
-                @extends('layouts.sidebar')
+                @extends('layouts.v2.sidebar')
             </div>
             <div id="content">
                 @yield('content')

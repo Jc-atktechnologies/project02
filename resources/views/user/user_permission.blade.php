@@ -1,3 +1,6 @@
+<div class="card">
+    <div class="card-body">
+
 @foreach($errors->all() as $error)
     <div class="alert alert-danger">{{$error}}</div>
 @endforeach
@@ -31,7 +34,10 @@
         </div>
     </div>
     <div class="d-flex flex-row justify-content-center">
-        <button type="submit" class="btn btn-success">Save</button>
-        @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
+        <button type="submit" class="btn btn-primary me-2">Save</button>
+        @if(!empty($next))<a href="{{$next}}" class="btn btn-secondary ml-2">Skip</a>@endif
     </div>
-</form>
+ </form>
+
+ </div>
+</div>

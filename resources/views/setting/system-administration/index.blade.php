@@ -1,8 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.v2.app')
 
 @section('content')
     {{-- Breadcrumb --}}
-    <div class="row">
+
+<nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{route('home')}}">{{config('app.name','Laravel')}}</a></li>
+          <li class="breadcrumb-item"><a href="javascript: void(0);">Settings</a></li>
+          <li class="breadcrumb-item"><a href="javascript: void(0);">System Administration</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Custom List</li>
+        </ol>
+</nav>
+
+<div class="page-title-box pb-1">
+    <h4 class="page-title">System Administration</h4>
+</div>
+
+    {{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -13,11 +27,15 @@
                         <li class="breadcrumb-item active">Custom List</li>
                     </ol>
                 </div>
-                <h4 class="page-title"></h4>System Administration
+                <h4 class="page-title"></h4>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- Table Content --}}
+
+<div class="card">
+    <div class="card-body">
+
     <div class="row">
         <div class="col-12">
         @include('flash::message')
@@ -45,4 +63,7 @@
             </div>
         </div>
     </div>
+
+</div>
+</div>
 @endsection

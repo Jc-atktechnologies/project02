@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.v2.app')
 @php
     if (!empty($detail)){
         $id             = $detail->id;
@@ -32,7 +32,21 @@
 @endphp
 @section('content')
 <!-- start page title -->
-<div class="row">
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route('home') }}">{{config('app.name','Laravel')}}</a></li>
+      <li class="breadcrumb-item"><a href="{{route('insurer-list')}}">Insurers</a></li>
+      <li class="breadcrumb-item"><a href="{{route('representative-list',['id',$insurer_id])}}">Representative List</a></li>
+      <li class="breadcrumb-item active">{{ $heading }}</li>
+    </ol>
+</nav>
+
+<div class="page-title-box pb-1">
+<h4 class="page-title">{{ $heading }}</h4>
+</div>
+
+{{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -47,7 +61,12 @@
             </div>
         </div>
     </div>
+     --}}
+
     <!-- Page content started -->
+<div class="card">
+    <div class="card-body">
+
     <div class="row">
         <div class="col-12">
             <div class="card-box">
@@ -60,7 +79,7 @@
                     <!-- row start -->
                     <div class="row">
                           <!-- col-6 start -->
-                          <div class="col-6">
+                          <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label>Name <span class="text-danger">*</span></label>
                                 <input type="text"class="form-control" name="name" id="name" value="@if(old('name')){{old('name')}}@else{{$name}}@endif">
@@ -90,7 +109,7 @@
                     <!-- row start -->
                     <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6">
+                        <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label> Phone : <span class="text-danger">*</span></label>
                                 <input type="text"class="form-control" name="phone" id="phone" value="@if(old('phone')){{old('phone')}}@else{{$phone}}@endif">
@@ -120,7 +139,7 @@
                     <!-- row start -->
                     <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6">
+                        <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label> Email : <span class="text-danger">*</span></label>
                                 <input type="text"class="form-control" name="email" id="email" value="@if(old('email')){{old('email')}}@else{{$email}}@endif">
@@ -155,7 +174,7 @@
                     <!-- row start -->
                     <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-12">
+                        <div class="col-12 pb-2">
                             <div class="form-group">
                                 <label> Notes :<span class="text-danger">*</span></label>
                                 <textarea row="3" class="form-control" name="notes" id="notes">@if(old('notes')){{old('notes')}}@else{{$notes}}@endif</textarea>
@@ -178,7 +197,8 @@
             </div>
         </div>
     </div>
-
+</div>
+</div>
 @push('customejs')
 <script async
     src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize">

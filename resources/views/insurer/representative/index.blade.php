@@ -1,9 +1,23 @@
-@extends ('layouts.app')
+@extends ('layouts.v2.app')
 
 @section('content')
 
 {{-- Breadcrumb --}}
-    <div class="row">
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route('home') }}">{{config('app.name','Laravel')}}</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('insurer-list') }}">Insurers</a></li>
+      <li class="breadcrumb-item active">Representatives List</li>
+    </ol>
+</nav>
+
+
+<div class="page-title-box pb-1">
+    <h4 class="page-title">Representativess</h4>
+</div>
+
+    {{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -16,14 +30,18 @@
                 <h4 class="page-title">Representativess</h4>
             </div>
         </div>
-    </div>
+    </div> --}}
+
     {{-- Table Content --}}
+<div class="card">
+    <div class="card-body">
+
     <div class="row">
         <div class="col-12">
             <div class="card-box table-responsive">
             <h5 class="card-header bg-primary text-white">Representatives list 
-                <div class="float-right ">
-                    <a href="{{ route('create-representative',['id'=>$id])}}" class="btn btn-sm btn-info "> Add Representative</a>
+                <div class="float-right pt-2">
+                    <a href="{{ route('create-representative',['id'=>$id])}}" class="btn btn-sm btn-dark "> Add Representative</a>
                 </div>
             </h5>
             @include('flash::message')
@@ -87,6 +105,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
     @push('customejs')
 
         <script>

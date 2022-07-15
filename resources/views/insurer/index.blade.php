@@ -1,9 +1,18 @@
-@extends ('layouts.app')
+@extends ('layouts.v2.app')
 
 @section('content')
 
 {{-- Breadcrumb --}}
-    <div class="row">
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="javascript: void(0);">{{config('app.name','Laravel')}}</a></li>
+      <li class="breadcrumb-item"><a href="javascript: void(0);">Insurers</a></li>
+      <li class="breadcrumb-item active">list</li>
+    </ol>
+</nav>
+
+    {{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -16,8 +25,15 @@
                 <h4 class="page-title">Insurers</h4>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+
     {{-- Table Content --}}
+
+<div class="card">
+    <div class="card-body">
+
+    
     <div class="row">
         <div class="col-12">
             <div class="card-box table-responsive">
@@ -40,11 +56,11 @@
                             <td>{{ $insurer->company_name }}</td>
                             <td>{{ $insurer->branch?->title }}</td>
                             <td>{{ $insurer->insurer_address }}</td>
-                            <td><a href="{{route('representative-list',['id'=>$insurer->id])}}" title="Representative List" class="btn btn-info">View </a></td>
-                            <td><button type="submit" onclick=" return GetInsurerDetail('{{$insurer->id}}')" class="btn btn-info">View</button></td>
+                            <td><a href="{{route('representative-list',['id'=>$insurer->id])}}" title="Representative List" class="btn btn-primary">View </a></td>
+                            <td><button type="submit" onclick=" return GetInsurerDetail('{{$insurer->id}}')" class="btn btn-primary">View</button></td>
                             <td> 
-                                <a href="{{route('update-insurer',['id'=>$insurer->id])}}" title="Edit Insurer" class="btn btn-info"><i class="fa fa-edit"></i> </a>
-                                @include('general_partials.delete_partial',['delete_url'=>route('delete-insurer',['id'=>$insurer->id])])
+                                <a href="{{route('update-insurer',['id'=>$insurer->id])}}" title="Edit Insurer" class="btn btn-secondary"><i class="fa fa-edit" data-feather="edit"></i></a>
+                                <span class="btn btn-danger"> <i class="bg-danger" data-feather="trash"> @include('general_partials.delete_partial',['delete_url'=>route('delete-insurer',['id'=>$insurer->id])]) </i> </span>
                             </td>
                         </tr>
                         @empty
@@ -77,6 +93,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
     @push('customejs')
     <script src="{{asset('assets/js/ajax.js')}}"></script>
     @endpush

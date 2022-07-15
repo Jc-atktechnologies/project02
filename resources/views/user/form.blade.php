@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v2.app')
 @php
     if (!empty($user_details)){
         $id                     = $user_details->id;
@@ -82,9 +82,19 @@
         $zip_code               = '';
     }
 @endphp
+
 @section('content')
     <!-- start page title -->
-    <div class="row">
+
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{route('home')}}">{{config('app.name','Laravel')}}</a></li>
+    <li class="breadcrumb-item"><a href="{{route('users-list')}}">Users</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{$heading}}</li>
+  </ol>
+</nav>
+    
+    <!-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -96,7 +106,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+    
     <!-- Page content started -->
     <div class="row">
         <div class="col-12">

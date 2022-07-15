@@ -22,7 +22,7 @@
       
       <li class="nav-item">
         <a href="{{ url('/') }}" class="nav-link">
-          <i class="link-icon" data-feather="box"></i>
+          <i class="link-icon" data-feather="target"></i>
           <span class="link-title">Performance</span>
         </a>
       </li>
@@ -47,6 +47,26 @@
           <span class="link-title">Claims</span>
         </a>
       </li>
+      
+      <li class="nav-item nav-category">Users</li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#Users" role="button" aria-expanded="" aria-controls="Users">
+          <i class="link-icon" data-feather="user"></i>
+          <span class="link-title">Users</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse" id="Users">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{ url('users-list') }}" class="nav-link">User List</a>
+            </li>
+            <li class="nav-item">
+              <!-- <a href="{{ url('') }}" class="nav-link"></a> -->
+            </li>
+          </ul>
+        </div>
+      </li>
+    </li>
 
       <li class="nav-item nav-category">Insures</li>
       <li class="nav-item">
@@ -58,30 +78,51 @@
         <div class="collapse" id="Insures">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{ url('') }}" class="nav-link">Create Insurer</a>
+              <a href="{{ url('create-insurer') }}" class="nav-link">Create Insurer</a>
             </li>
             <li class="nav-item">
-              <a href="{{ url('') }}" class="nav-link">Insurer List</a>
+              <a href="{{ url('insurer-list') }}" class="nav-link">Insurer List</a>
             </li>
           </ul>
         </div>
       </li>
     </li>
 
+    <li class="nav-item nav-category">Branch</li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#Branch" role="button" aria-expanded="" aria-controls="Branch">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">branch</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse" id="Branch">
+        <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{ url('create-branch') }}" class="nav-link">Create branch </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url('branch-list') }}" class="nav-link">branch list</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </li>
+
+    
+
+
+
       <li class="nav-item nav-category">Settings</li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#Settings" role="button" aria-expanded="" aria-controls="Settings">
-          <i class="link-icon" data-feather="box"></i>
+          <i class="link-icon" data-feather="settings"></i>
           <span class="link-title">Settings</span>
           <i class="link-arrow" data-feather="chevron-down"></i>
         </a>
         <div class="collapse" id="Settings">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{ url('') }}" class="nav-link">System</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ url('') }}" class="nav-link">Custom List</a>
+              <a href="{{ url('custom-list') }}" class="nav-link">System Administration</a>
             </li>
           </ul>
         </div>

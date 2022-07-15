@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.v2.app')
 @php
     if (!empty($detail)){
         $id             = $detail->id;
@@ -40,7 +40,20 @@
 @endphp
 @section('content')
 <!-- start page title -->
-<div class="row">
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route('home') }}">{{config('app.name','Laravel')}}</a></li>
+      <li class="breadcrumb-item active" > <a href="{{route('claims-list') }}">Insurers</a></li>
+      <li class="breadcrumb-item active">{{ $heading }}</li>
+    </ol>
+</nav>
+
+<div class="page-title-box pb-1">
+<h4 class="page-title">{{ $heading }}</h4>
+</div>
+
+{{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -53,8 +66,13 @@
                 <h4 class="page-title">{{ $heading }}</h4>
             </div>
         </div>
-    </div>
+    </div> --}}
+
     <!-- Page content started -->
+<div class="card">
+    <div class="card-body">
+
+    
     <div class="row">
         <div class="col-12">
             <div class="card-box">
@@ -67,7 +85,7 @@
                     <!-- row start -->
                     <div class="row">
                           <!-- col-6 start -->
-                          <div class="col-6">
+                          <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label>Company Name <span class="text-danger">*</span></label>
                                 <input type="text"class="form-control" name="company_name" id="company_name" value="@if(old('company_name')){{old('company_name')}}@else{{$company_name}}@endif">
@@ -102,7 +120,7 @@
                     <!-- row start -->
                     <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6">
+                        <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label> Address :</label>
                                 <textarea row="3" class="form-control" name="address" id="address">@if(old('address')){{old('address')}}@else{{$address}}@endif</textarea>
@@ -132,7 +150,7 @@
                     <!-- row start -->
                     <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6">
+                        <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label> Prov/state :</label>
                                 <input type="text"class="form-control" name="state" id="state" value="@if(old('state')){{old('state')}}@else{{$state}}@endif">
@@ -162,7 +180,7 @@
                      <!-- row start -->
                      <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6">
+                        <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label> Postal/zip :</label>
                                 <input type="text"class="form-control" name="zipcode" id="zipcode" value="@if(old('zipcode')){{old('zipcode')}}@else{{$zipcode}}@endif">
@@ -192,7 +210,7 @@
                       <!-- row start -->
                       <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6">
+                        <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label> Fax :</label>
                                 <input type="text"class="form-control" name="fax" id="fax" value="@if(old('fax')){{old('fax')}}@else{{$fax}}@endif">
@@ -222,7 +240,7 @@
                      <!-- row start -->
                      <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-6">
+                        <div class="col-6 pb-2">
                             <div class="form-group">
                                 <label> Alt Email :</label>
                                 <input type="text"class="form-control" name="alt_email" id="alt_email" value="@if(old('alt_email')){{old('alt_email')}}@else{{$alt_email}}@endif">
@@ -252,7 +270,7 @@
                     <!-- row start -->
                     <div class="row">
                         <!-- col-6 start -->
-                        <div class="col-12">
+                        <div class="col-12 ">
                             <div class="form-group">
                                 <label> Notes :</label>
                                 <textarea row="3" class="form-control" name="notes" id="notes">@if(old('notes')){{old('notes')}}@else{{$notes}}@endif</textarea>
@@ -268,14 +286,15 @@
                     <!-- row end -->
                     <!-- insurer section end -->
                     <input type="hidden" name="id" value="{{$id}}">
-                    <div class="d-flex flex-row justify-content-center">
-                        <button type="submit" class="btn btn-success">Save</button>
+                    <div class="d-flex flex-row justify-content-center pt-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+</div>
+</div>
 @push('customejs')
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNXNhr4HCbfCYEoo37DQ1TrAsL60VS63A&libraries=places&callback=initialize">

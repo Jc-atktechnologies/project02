@@ -1,8 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.v2.app')
 
 @section('content')
-    {{-- Breadcrumb --}}
-    <div class="row">
+
+{{-- Breadcrumb --}}
+
+    <nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Basic Elements</li>
+    </ol>
+    </nav>
+
+    <div class="page-title-box pb-1">
+        <h4 class="page-title">Users</h4>
+    </div>
+
+
+
+    <!-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -15,7 +30,7 @@
                 <h4 class="page-title">Users</h4>
             </div>
         </div>
-    </div>
+    </div> -->
     {{-- Table Content --}}
     <div class="row">
         <div class="col-12">
@@ -39,9 +54,9 @@
                             <td>{{$user->email}}</td>
                             <td>@if(!empty($user->userDetail->mobile_number)){{$user->userDetail->mobile_number}}@endif </td>
                             <td>@if(!empty($user->userDetail->claim_access)){{$user->userDetail->claim_access}}@endif</td>
-                            <td>@if($user->is_active == 1)<span class="badge badge-success p-2">Active</span>@else<span class="badge badge-danger p-2">Block</span>@endif</td>
+                            <td>@if($user->is_active == 1)<span class="badge badge-success p-2">Active</span>@else<span class="badge badge-danger bg-danger p-3  ">Block</span>@endif</td>
                             <td>
-                                <a href="{{route('update-user',['id'=>$user->id])}}" title="Edit Branch" class="btn btn-info"><i class="fa fa-eye"></i> </a>
+                                <a href="{{route('update-user',['id'=>$user->id])}}" title="Edit Branch" class="btn btn-info"><i class="fa fa-eye" data-feather="eye"></i> </a>
                                 @if($user->is_active == 1) @include('general_partials.delete_partial',['delete_url'=>route('delete-branch',['id'=>$user->id])]) @endif
                             </td>
                         </tr>

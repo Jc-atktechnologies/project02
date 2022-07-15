@@ -1,3 +1,7 @@
+<div class="card">
+    <div class="card-body">
+
+
 <section>
     <form method="post" action="{{$route}}" enctype="multipart/form-data">
         @csrf
@@ -5,7 +9,7 @@
         <input type="hidden" name="attachments" value="1">
         <input type="hidden" name="user_id" value="{{$user_id}}">
         <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 pt-4">
                 <label>File</label>
                 <input type="file" name="attachment" class="form-control-file">
                 @error('attachment')
@@ -24,8 +28,8 @@
                 @enderror
             </div>
             <div class="col-md-4 mt-3">
-                <button type="submit" class="btn btn-success">Add Attachment</button>
-                @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
+                <button type="submit" class="btn btn-primary">Add Attachment</button>
+                @if(!empty($next))<a href="{{$next}}" class="btn btn-secondary ml-2">Skip</a>@endif
             </div>
         </div>
     </form>
@@ -52,3 +56,7 @@
         @endif
     </table>
 </section>
+
+</div>
+</div>
+

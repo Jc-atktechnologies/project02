@@ -70,7 +70,7 @@ License: For each use you must have a valid license purchased only from above li
     <!-- end plugin js -->
 
     <!-- common js -->
-    <script src="{{ ('assets/js/template.js') }}"></script>
+    <script src="{{ URL::to('assets/js/template.js') }}"></script>
     <!-- end common js -->
 
     @stack('custom-scripts')

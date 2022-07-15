@@ -248,7 +248,7 @@ class UserDetailController extends Controller
         }
 
         $branches = Branch::where('status','=',1)->get();
-         return view('user.form',compact('user_details','branches','heading','tab','route','type','user_id','payouts','management_notes','attachments','next','tabs_url'));
+        return view('user.form',compact('user_details','branches','heading','tab','route','type','user_id','payouts','management_notes','attachments','next','tabs_url'));
     }
 
     /**

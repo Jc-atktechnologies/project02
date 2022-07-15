@@ -38,7 +38,7 @@ class RepresentativeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($id=null)
     {
         try{
             if(empty($id) || $id==null){

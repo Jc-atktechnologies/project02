@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v2.app')
 @php
     if (!empty($detail)){
         $id             = $detail->id;
@@ -16,7 +16,16 @@
 @endphp
 @section('content')
     <!-- start page title -->
-    <div class="row">
+<nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('home') }}">Settings</a></li>
+          <li class="breadcrumb-item"><a href="javascript: void(0);">System Administration</a></li>
+          <li class="breadcrumb-item active" > <a href="{{route('custom-list') }}">Custom List</a></li>
+          <li class="breadcrumb-item active">{{$heading}}</li>
+        </ol>
+</nav>
+
+    {{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
@@ -29,8 +38,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+
     <!-- Page content started -->
+<div class="card">
+    <div class="card-body">
+
     <div class="row">
         <div class="col-12">
             <div class="card-box">
@@ -49,11 +62,13 @@
                         @enderror
                     </div>
                     <input type="hidden" name="id" value="{{$id}}">
-                    <div class="d-flex flex-row justify-content-center">
-                        <button type="submit" class="btn btn-success">Save</button>
+                    <div class="d-flex flex-row justify-content-center pt-2">
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+</div>
+</div>
 @endsection

@@ -1,3 +1,6 @@
+<div class="card">
+    <div class="card-body">
+
 @error('user_id')
     <div class="alert alert-danger">{{$message}}</div>
 @enderror
@@ -8,7 +11,7 @@
     <input type="hidden" name="user_id" value="{{$user_id}}">
     <div class="alert-primary alert">System Login Information</div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 pt-1">
             <div class="form-check">
                 <input type="checkbox"class="form-check-input" name="is_active" value="1" @if(old('is_active') == '1' || $is_active == 1) checked @endif>
                 <label class="form-check-label">Banned From Login</label>
@@ -19,7 +22,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Username</label>
                 <input type="text"class="form-control" name="user_name" value="@if(old('user_name')){{old('user_name')}}@else{{$name}}@endif">
@@ -30,7 +33,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-3">
             <div class="form-group">
                 <label>Password</label>
                 <input type="password"class="form-control" name="password" value="@if(old('password')){{old('password')}}@endif">
@@ -56,7 +59,7 @@
         <div class="col-md-12">
             <div class="alert alert-primary">Preferences</div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Claim Access</label>
                 <select name="claim_access" class="form-control">
@@ -98,7 +101,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pt-2">
             <div class="form-group">
                 <label>Calendar viewable by</label>
                 <div class="form-check">
@@ -126,7 +129,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-3">
             <div class="form-group">
                 <label>Calendar settings</label>
                 <div class="form-check">
@@ -142,7 +145,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pt-1">
             <div class="form-group">
                 <label>Internal Emails</label>
                 <div class="form-check">
@@ -161,7 +164,10 @@
     </div>
 
     <div class="d-flex flex-row justify-content-center">
-        <button type="submit" class="btn btn-success">Save</button>
-        @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
+        <button type="submit" class="btn btn-primary me-2">Save</button>
+        @if(!empty($next))<a href="{{$next}}" class="btn btn-secondary ml-2">Skip</a>@endif
     </div>
 </form>
+
+</div>
+</diV>

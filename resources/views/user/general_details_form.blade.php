@@ -1,3 +1,6 @@
+<div class="card">
+<div class="card-body">
+
 @include('flash::message')
 <form action="{{$route}}" method="post">
     @csrf
@@ -5,7 +8,7 @@
     <input type="hidden" name="user_id" value="{{$user_id}}">
     <div class="alert-primary alert">Profile Details and Contact Information</div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>First Name</label>
                 <input type="text"class="form-control" name="first_name" value="@if(old('first_name')){{old('first_name')}}@else{{$first_name}}@endif">
@@ -16,7 +19,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Last Name</label>
                 <input type="text"class="form-control" name="last_name" value="@if(old('last_name')){{old('last_name')}}@else{{$last_name}}@endif">
@@ -38,7 +41,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Phone</label>
                 <input type="text"class="form-control" name="phone_number" value="@if(old('phone_number')){{old('phone_number')}}@else{{$phone_number}}@endif">
@@ -49,7 +52,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Cell</label>
                 <input type="text"class="form-control" name="mobile_number" value="@if(old('mobile_number')){{old('mobile_number')}}@else{{$mobile_number}}@endif">
@@ -71,7 +74,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Branch</label>
                 <select name="branch_id" class="form-control">
@@ -100,7 +103,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>SSN/SIN</label>
                 <input type="text"class="form-control" name="ssn" value="@if(old('ssn')){{old('ssn')}}@else{{$ssn}}@endif">
@@ -122,7 +125,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Address</label>
                 <input type="text" name="address" id="address" class="form-control" value="@if(old('address')){{old('address')}}@else{{$address}}@endif">
@@ -134,7 +137,7 @@
                 <input type="text" name="city" id="city" class="form-control" value="@if(old('city')){{old('city')}}@else{{$city}}@endif" readonly>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Prov/State</label>
                 <input type="text" name="state" id="state" class="form-control" value="@if(old('state')){{old('state')}}@else{{$state}}@endif" readonly>
@@ -146,14 +149,14 @@
                 <input type="text" name="country" id="country" class="form-control" value="@if(old('country')){{old('country')}}@else{{$country}}@endif" readonly>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-3">
             <div class="form-group">
                 <label>Postal/Zip</label>
                 <input type="text" name="zip_code" id="zipcode" class="form-control" value="@if(old('zip_code')){{old('zip_code')}}@else{{$zip_code}}@endif">
             </div>
         </div>
         <div class="alert-primary alert col-md-12">Other Information</div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>External Link</label>
                 <input type="text"class="form-control" name="external_link" value="@if(old('external_link')){{old('external_link')}}@else{{$external_link}}@endif">
@@ -175,7 +178,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label class="label">Preferred For</label>
                 <br>
@@ -198,7 +201,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Overall Rating</label>
                 <select name="rating" class="form-control">
@@ -210,7 +213,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 pb-2">
             <div class="form-group">
                 <label>Languages Spoken</label>
                 <input type="text" name="language_spoken" class="form-control" value="@if(old('language_spoken')){{old('language_spoken')}}@else{{$languages}}@endif">
@@ -234,10 +237,12 @@
         </div>
     </div>
     <div class="d-flex flex-row justify-content-center">
-        <button type="submit" class="btn btn-success">Save</button>
-        @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
+        <button type="submit" class="btn btn-primary me-2">Save</button>
+        @if(!empty($next))<a href="{{$next}}" class="btn btn-secondary ml-2">Skip</a>@endif
     </div>
 </form>
+</div>
+</div>
 @push('customejs')
     <script async
             src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&callback=initialize">

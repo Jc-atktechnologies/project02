@@ -1,3 +1,7 @@
+<div class="card">
+    <div class="card-body">
+
+ 
 <form method="post" action="{{$route}}">
     @csrf
     {!! $type !!}
@@ -13,13 +17,13 @@
                 </ul>
             @enderror
         </div>
-        <div class="form-check col-md-2 mt-3">
+        <div class="form-check col-md-2 pt-4">
             <input type="checkbox" class="form-check-input" name="is_urgent" value="1">
             <label class="form-check-label">Urgent</label>
         </div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary">Save</button>
-            @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
+            @if(!empty($next))<a href="{{$next}}" class="btn btn-secondary ml-2">Skip</a>@endif
         </div>
     </div>
 </form>
@@ -43,3 +47,6 @@
         </tbody>
     @endif
 </table>
+
+</div>
+</div>

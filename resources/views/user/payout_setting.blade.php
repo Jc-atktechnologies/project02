@@ -1,12 +1,17 @@
+<div class="card">
+    <div class="card-body">
+
+
 <section>
     <h5>Add New Payout</h5>
+    <br>
     <form method="post" action="{{$route}}">
         @csrf
         {!! $type !!}
         <input type="hidden" name="payout_setting" value="1">
         <input type="hidden" name="user_id" value="{{$user_id}}">
         <div class="row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 pb-2">
                 <label>Disbursement</label>
                 <select name="disbursement_type" class="form-control">
                     <optgroup label="System Fee">
@@ -32,8 +37,8 @@
                 @enderror
             </div>
             <div class="col-md-4 mt-3">
-                <button type="submit" class="btn btn-success">Add Payout</button>
-                @if(!empty($next))<a href="{{$next}}" class="btn btn-info ml-2">Skip</a>@endif
+                <button type="submit" class="btn btn-primary">Add Payout</button>
+                @if(!empty($next))<a href="{{$next}}" class="btn btn-secondary ml-2">Skip</a>@endif
             </div>
         </div>
     </form>
@@ -59,3 +64,6 @@
         @endif
     </table>
 </section>
+
+</div>
+</div>
