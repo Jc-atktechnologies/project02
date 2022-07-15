@@ -58,10 +58,10 @@
         <div class="collapse" id="Users">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{ url('users-list') }}" class="nav-link">User List</a>
+              <a href="{{ url('create-user') }}" class="nav-link">Create User</a>
             </li>
             <li class="nav-item">
-              <!-- <a href="{{ url('') }}" class="nav-link"></a> -->
+              <a href="{{ url('users-list') }}" class="nav-link">User List</a>
             </li>
           </ul>
         </div>
