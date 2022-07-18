@@ -57,10 +57,10 @@
                             <td>{{ $insurer->branch?->title }}</td>
                             <td>{{ $insurer->insurer_address }}</td>
                             <td><a href="{{route('representative-list',['id'=>$insurer->id])}}" title="Representative List" class="btn btn-primary">View </a></td>
-                            <td><button type="submit" onclick=" return GetInsurerDetail('{{$insurer->id}}')" class="btn btn-primary">View</button></td>
+                            <td><button type="submit" onclick="return GetInsurerDetail('{{$insurer->id}}')" class="btn btn-primary">View</button></td>
                             <td> 
                                 <a href="{{route('update-insurer',['id'=>$insurer->id])}}" title="Edit Insurer" class="btn btn-secondary"><i class="fa fa-edit" data-feather="edit"></i></a>
-                                <span class="btn btn-danger"> <i class="bg-danger" data-feather="trash"> @include('general_partials.delete_partial',['delete_url'=>route('delete-insurer',['id'=>$insurer->id])]) </i> </span>
+                                 @include('general_partials.delete_partial',['delete_url'=>route('delete-insurer',['id'=>$insurer->id])])
                             </td>
                         </tr>
                         @empty

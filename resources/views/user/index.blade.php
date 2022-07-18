@@ -6,8 +6,9 @@
 
     <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Forms</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Basic Elements</li>
+        <li class="breadcrumb-item"><a href="javascript: void(0);">{{ config('app.name', 'Laravel') }}</a></li>
+        <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
+        <li class="breadcrumb-item active">List</li>
     </ol>
     </nav>
 
@@ -31,6 +32,7 @@
             </div>
         </div>
     </div> -->
+    
     {{-- Table Content --}}
     <div class="row">
         <div class="col-12">

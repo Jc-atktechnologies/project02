@@ -71,7 +71,7 @@
                             <td>{{ $representative->notes }}</td>
                             <td>{{ $representative->is_active }} </td>
                             <td> 
-                                <a href="{{route('update-representative',['id'=>$representative->id])}}" title="Edit Representative" class="btn btn-info"><i class="fa fa-edit"></i> </a>
+                                <a href="{{route('update-representative',['id'=>$representative->id])}}" title="Edit Representative" class="btn btn-info"><i class="fa fa-edit"data-feather="edit"></i> </a>
                                 @include('general_partials.delete_partial',['delete_url'=>route('delete-representative',['id'=>$representative->id])])
                             </td>
                         </tr>

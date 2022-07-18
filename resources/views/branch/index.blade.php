@@ -40,8 +40,8 @@
                             <td>{{$branch->title}}</td>
                             <td>@if($branch->status == 1)<span class="badge-success">Active</span>@else<span class="badge-danger">Block</span>@endif</td>
                             <td>
-                                <a href="{{route('update-branch',['id'=>$branch->id])}}" title="Edit Branch" class="btn btn-info"><i class="fa fa-edit"></i> </a>
-                                @include('general_partials.delete_partial',['delete_url'=>route('delete-branch',['id'=>$branch->id])])
+                                <a href="{{route('update-branch',['id'=>$branch->id])}}" title="Edit Branch" class="btn btn-info"><i class="fa fa-edit" data-feather="edit"></i> </a>
+                                 @include('general_partials.delete_partial',['delete_url'=>route('delete-branch',['id'=>$branch->id])]) 
                             </td>
                         </tr>
                     @empty
