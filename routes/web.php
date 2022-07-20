@@ -14,6 +14,7 @@ use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\InsurerController;
 use App\Http\Controllers\ManagementNoteController;
 use App\Http\Controllers\RepresentativeController;
+use App\Http\Controllers\CalendarController;
 use App\Models\Representative;
 
 /*
@@ -46,11 +47,8 @@ Route::group(['middleware'=>'auth'],function (){
     //     return view('calendar.index');
     // })->name('calendar');
 
-    Route::get('calendar', function () {
-        return view('calendar.calendar');
-    })->name('calendar');
+    Route::get('calendar',[CalendarController::class,'index'])->name('calendar');
 
-    
 
     Route::get('claims', function () {
         return view('claims.index');
