@@ -12,9 +12,16 @@
     </ol>
     </nav>
 
-    <div class="page-title-box pb-1">
-        <h4 class="page-title">Users</h4>
+    <div class="page-title-box pb-1 row">
+        <div class="col-10" style="padding-top: 11px;">
+            <h4 class="page-title">Users</h4>
+        </div>
+        <div class="col-2">
+            <a href="{{route('create-user')}}" class="btn btn-primary me-2" style="float: right;">Create User</a>
+        </div>
     </div>
+
+    
 
 
 

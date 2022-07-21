@@ -80,5 +80,11 @@ class CustomListController extends Controller
     public function destroy(Claims $claims)
     {
         //
-    }   
+    }  
+    
+    public function company_index()
+    {
+        return view('setting.company-administration.index');
+
+    }
 }

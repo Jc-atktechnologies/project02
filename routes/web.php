@@ -125,6 +125,10 @@ Route::group(['middleware'=>'auth'],function (){
 
     //system administration
     Route::get('custom-list',[CustomListController::class,'index'])->name('custom-list');
+
+    //Company Administration
+    Route::get('company_administration',[CustomListController::class,'company_index'])->name('company_administration');
+
     /* loss type route */
     Route::get('loss-types',[LossTypeController::class,'index'])->name('loss-types');
     Route::get('create-loss-type',[LossTypeController::class,'create'])->name('create-loss-type');

@@ -122,9 +122,11 @@
         <div class="collapse" id="Settings">
           <ul class="nav sub-menu">
             <li class="nav-item">
-              <a href="{{ url('custom-list') }}" class="nav-link">System Administration</a>
-            </li>
-          </ul>
+              <a href="{{ url('custom-list') }}" class="nav-link"> System Administration</a>
+            </li>            
+              <li class="nav-item">
+                <a href="{{ url('company_administration') }}" class="nav-link"> Company Administration</a>
+              </li>
         </div>
       </li>
 </li>

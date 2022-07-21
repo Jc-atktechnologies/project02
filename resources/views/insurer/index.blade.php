@@ -12,6 +12,13 @@
     </ol>
 </nav>
 
+
+<div class="page-title-box pb-1 row">
+    <div class="col-12">
+        <a href="{{route('create-insurer')}}" class="btn btn-primary me-2" style="float: right;">Create Insurer</a>
+    </div>
+</div>
+
     {{-- <div class="row">
         <div class="col-12">
             <div class="page-title-box">

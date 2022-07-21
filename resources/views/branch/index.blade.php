@@ -12,15 +12,21 @@
                         <li class="breadcrumb-item active">List</li>
                     </ol>
                 </div>
-                <h4 class="page-title pb-2 pt-2">Branches</h4>
             </div>
+        </div>
+    </div>
+
+    <div class="page-title-box pb-1 row">
+        <div class="col-10" style="padding-top: 11px;">
+            <h4 class="page-title">Branches</h4>
+        </div>
+        <div class="col-2 ">
+            <a href="{{route('create-branch')}}" class="btn btn-primary me-2" style="float: right;">Create Branch</a>
         </div>
     </div>
 
     <div class="card">
         <div class="card-body">
-
-        
     {{-- Table Content --}}
     <div class="row">
         <div class="col-12">
